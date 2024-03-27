@@ -11,19 +11,24 @@ const LoginSignup = () => {
                 </div>
                 <div className="inputs">
                     <div className="input">
-                        <input type="text" placeholder='Name' />
+                        <label for="fname">Name</label><br></br>
+                        <input type="text" id="fname" placeholder='Name' />
                     </div>
                     <div className="input">
-                        <input type="text" placeholder='Username' />
+                        <label for="fusername">Username</label><br></br>
+                        <input type="text" id="fusername" placeholder='Username' />
                     </div>
                     <div className="input">
-                        <input type="password" placeholder='Create Password' />
+                        <label for="fpassword">Password</label><br></br>
+                        <input type="password" id="fpassword" placeholder='Create Password' />
                     </div>
                     <div className="input">
-                        <input type="number" placeholder='Contact Number' />
+                        <label for="fcnumber">Contact Number</label><br></br>
+                        <input type="number" id="fcnumber" placeholder='Contact Number' />
                     </div>
                     <div className="input">
-                        <input type="email" placeholder='Email' />
+                        <label for="femail">Email</label><br></br>
+                        <input type="email" id="femail" placeholder='Email' />
                     </div>
                     <input type="file" id="myfile" name="myfile"></input>
                 </div>
