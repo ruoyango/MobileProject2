@@ -39,9 +39,7 @@ const LoginSignup = () => {
                     <input type="file" id="myfile" name="myfile"></input>
                 </div>
             </div>
-            <div className="submit-container" onClick={routeChange}>
-                <div className="submit">Sign Up</div>
-            </div>
+            <div className="submit" onClick={routeChange}>Sign Up</div>
         </div>
     )
 }

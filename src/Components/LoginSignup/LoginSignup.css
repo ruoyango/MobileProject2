@@ -2,6 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 220px;
     height: 59px;
     color: #fff;
@@ -53,7 +57,6 @@ h1 {
     height: 80px;
     background: #eaeaea;
     border-radius: 6px;
-
 }
 
 .input input {
@@ -67,6 +70,7 @@ h1 {
 }
 
 .no-account {
+    text-align: center;
     cursor: pointer;
 }
 
