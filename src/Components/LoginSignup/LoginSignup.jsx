@@ -12,9 +12,9 @@ const LoginSignup = () => {
     return (
         <div className='container'>
             <div className="header">
-                <div className="text">
+                <h1 className="headline">
                     Sign Up Here!
-                </div>
+                </h1>
                 <div className="inputs">
                     <div className="input">
                         <label for="fname">Name</label><br></br>
