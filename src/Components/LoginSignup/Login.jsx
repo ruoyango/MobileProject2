@@ -1,6 +1,7 @@
 import React from 'react'
 import './LoginSignup.css'
 import { useNavigate } from "react-router-dom";
+import logo from '../../logo.svg'
 
 const Login = () => {
     let navigate = useNavigate();
@@ -11,6 +12,7 @@ const Login = () => {
     return (
         <div className='container'>
             <div className="header">
+            <img src={logo} className="profile-photo" alt="profile" />
                 <div className="inputs">
                     <div className="input">
                         <input type="text" id="fusername" placeholder='Username' />
