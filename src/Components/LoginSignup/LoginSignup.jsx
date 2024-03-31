@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
 import './LoginSignup.css'
+import { useNavigate } from "react-router-dom";
 
 const LoginSignup = () => {
-    const [action, setAction] = useState("Sign Up");
+
+    let navigate = useNavigate();
+    const routeChange = () => {
+        let path = "/";
+        navigate(path);
+    }
     return (
         <div className='container'>
             <div className="header">
@@ -33,7 +39,7 @@ const LoginSignup = () => {
                     <input type="file" id="myfile" name="myfile"></input>
                 </div>
             </div>
-            <div className="submit-container">
+            <div className="submit-container" onClick={routeChange}>
                 <div className="submit">Sign Up</div>
             </div>
         </div>
