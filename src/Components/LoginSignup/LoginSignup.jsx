@@ -6,7 +6,7 @@ const LoginSignup = () => {
 
     let navigate = useNavigate();
     const routeChange = () => {
-        let path = "/";
+        let path = "/addpost";
         navigate(path);
     }
     return (
