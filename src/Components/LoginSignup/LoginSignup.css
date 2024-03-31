@@ -15,3 +15,8 @@
 .no-account{
     cursor: pointer;
 }
+
+.profile-photo{
+    width: 220px;
+    height: 59px;
+}

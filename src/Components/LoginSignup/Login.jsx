@@ -6,7 +6,7 @@ import logo from '../../logo.svg'
 const Login = () => {
     let navigate = useNavigate();
     const routeChange = () => {
-        let path = "/SignUp";
+        let path = "/signup";
         navigate(path);
     }
     return (
@@ -22,7 +22,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <div className="submit-container" onClick={routeChange}>
+            <div className="submit-container" onClick={() => navigate('/addpost')}>
                 <div className="submit">Log in</div>
             </div>
             <div className="no-account" onClick={routeChange}>Don't have an account?</div>
