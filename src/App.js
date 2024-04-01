@@ -1,11 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-import LoginSignup from './Components/LoginSignup/LoginSignup';
+import Signup from './Components/LoginSignup/Signup';
+import Login from './Components/LoginSignup/Login'
+import Dashboard from './Components/WebPages/Dashboard'
+import SavedPage from './Components/WebPages/SavedPage'
+import SerachPage from './Components/WebPages/SearchPage'
+import {Route} from 'react-router-dom'
 
 function App() {
   return (
     <div>
-     <LoginSignup/>
+      {/* <Route path="/" exact component={Dashboard}/> */}
+      {/* <Signup/>
+       */}
+       <Login/>
+
     </div>
   );
 }
