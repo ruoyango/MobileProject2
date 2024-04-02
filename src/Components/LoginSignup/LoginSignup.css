@@ -35,6 +35,29 @@ body {
     padding:20px;
 }
 
+.wrapper
+{
+    width: 800px;
+    height: 500px;
+    border: 1px solid black;
+    box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    /* margin:auto; */
+    
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    background-color: #284A8E;
+    padding:30px;
+}
+
+h1{
+    text-align: center;
+    color:white;
+    font-size: 50px;
+}
 
 img
 {
@@ -64,7 +87,7 @@ img
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    ;
+    
 }
 
 .input-box
@@ -132,4 +155,39 @@ a
     margin:auto;
 
 }
+
+.inputsLeft
+{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.inputsLeft .input-box
+{
+    width:160%;
+}
+#moreDiv
+{
+    display:flex;
+    justify-content: space-between;
+}
+#inputRight
+{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    float:right;
+}
+
+#inputRight button
+{
+    margin-left:10px;
+}
+
+
+
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap')

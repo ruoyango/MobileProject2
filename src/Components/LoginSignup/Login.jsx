@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./LoginSignup.css"
 import { FaUser } from "react-icons/fa";
 import user_icon from "../Assets/account.png"
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [action, setAction] = useState("Log In");
@@ -27,7 +28,9 @@ const Login = () => {
                 
                 <button type="submit">Login</button>
                 <div className='register-link'>
-                    <a href="#"> Don't have an account?</a>
+                    {/* <a href="Signup.jsx"> Don't have an account?</a> */}
+                    <Link className='a' to="/signup">Don't have an account? Sign up!</Link>
+
                 </div>
 
             </form>

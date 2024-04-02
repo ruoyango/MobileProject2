@@ -12,3 +12,6 @@ const SavedPage = () =>
         </div>
     )
 }
+
+
+export default SavedPage;
