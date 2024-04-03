@@ -6,14 +6,12 @@ import Dashboard from './Components/WebPages/Dashboard'
 import SavedPage from './Components/WebPages/SavedPage'
 import SearchPage from './Components/WebPages/SearchPage'
 import {Route, BrowserRouter, Routes} from 'react-router-dom'
+import NavBar from "./Components/NavBar"
 
 function App() {
   return (
     <div>
-      {/* <Route path="/" exact component={Dashboard}/> */}
-     
       
-       {/* <Login/> */}
        <BrowserRouter>
        <Routes>
         <Route index element ={<Login/>}/>

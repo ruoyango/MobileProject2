@@ -1,5 +1,6 @@
 import React from 'react'
 import "./style.css"
+import NavBar from "../NavBar"
 
 
 const Dashboard = () =>
@@ -8,7 +9,7 @@ const Dashboard = () =>
     return(
 
         <div>
-
+         <NavBar/>
         </div>
     )
 }

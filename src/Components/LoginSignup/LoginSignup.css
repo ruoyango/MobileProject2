@@ -7,10 +7,10 @@
 
 
 body {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100vh; */
     
 }
 
@@ -19,8 +19,8 @@ body {
 
 
 .container {
-    width: 60%;
-    height: 500px;
+    width: 30%;
+    height: 610px;
     border: 1px solid black;
     /* box-shadow: 5px 5px grey; */
     box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
@@ -28,11 +28,11 @@ body {
     -moz-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
     border-radius: 10px;
     margin:auto;
-    margin-top: 20px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     background-color: #284A8E;
-    padding:20px;
+    padding:5px;
 }
 
 .wrapper
@@ -44,7 +44,7 @@ body {
     -webkit-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
     border-radius: 10px;
-    /* margin:auto; */
+    margin:50px auto;
     
     /* display: flex;
     flex-direction: column;
@@ -61,8 +61,8 @@ h1{
 
 img
 {
-    width:50%;
-    height:30%;
+    width:40%;
+    height:10%;
     display:block;
     margin:20px auto;
 
@@ -93,7 +93,7 @@ img
 .input-box
 {
     
-    width:70%;
+    width:80%;
     height:45px;
     display:flex;
     align-items: center;
@@ -105,7 +105,7 @@ img
 .input-box input
 {
     border:none;
-    width:70%;
+    width:80%;
     height:35px;
     margin:3px;
     background-color: transparent;
