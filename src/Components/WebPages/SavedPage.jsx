@@ -1,5 +1,7 @@
 import React from 'react'
 import "./style.css"
+import NavBar from '../NavBar'
+
 
 
 const SavedPage = () =>
@@ -8,7 +10,7 @@ const SavedPage = () =>
     return(
 
         <div>
-
+         <NavBar/>
         </div>
     )
 }
