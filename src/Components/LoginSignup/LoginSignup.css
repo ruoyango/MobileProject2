@@ -1,108 +1,21 @@
-
-
-
-
-
-
-
-
-
-
-.container {
-    width: 30%;
-    height: 610px;
-    border: 1px solid black;
-    /* box-shadow: 5px 5px grey; */
-    box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    border-radius: 10px;
-    margin:auto;
-    margin-top: 50px;
+.submit {
     display: flex;
-    flex-direction: column;
-    background-color: #284A8E;
-    padding:5px;
-}
-
-.wrapper
-{
-    width: 800px;
-    height: 500px;
-    border: 1px solid black;
-    box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    border-radius: 10px;
-    margin:50px auto;
-    
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
-    background-color: #284A8E;
-    padding:30px;
-}
-
-h1{
-    text-align: center;
-    color:white;
-    font-size: 50px;
-}
-
-img
-{
-    width:40%;
-    height:10%;
-    display:block;
-    margin:20px auto;
-
-}
-
-.imge
-{
-    /* display: flex;
-    align-items: center; */
-    text-align: center;
-}
-.imge #userIcon
-{
-    width:50%;
-    height:40%;
-}
-
-
-.inputs {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 30px;
-    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 220px;
+    height: 59px;
+    color: #fff;
+    background: #01318E;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
 }
-
-.input-box
-{
-    
-    width:80%;
-    height:45px;
-    display:flex;
-    align-items: center;
-    border-radius: 6px;
-    background-color: white;
-    padding:3px;
-}
-
-.input-box input
-{
-    border:none;
-    outline:none;
-    width:80%;
-    height:35px;
-    margin:3px;
-    background-color: transparent;
-    font-size:15px;
-}
-
 button
 {
     display: block;
@@ -131,8 +44,6 @@ button:active
     transform: translateY(1px);
 
 }
-
-
 .register-link
 {
     text-align: center;
@@ -146,10 +57,120 @@ a
     margin:auto;
 
 }
+img
+{
+    width:40%;
+    height:10%;
+    display:block;
+    margin:20px auto;
+
+}
+
+.container {
+    width: 30%;
+    height: 610px;
+    border: 1px solid black;
+    /* box-shadow: 5px 5px grey; */
+    box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    margin:auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: #284A8E;
+    padding:5px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+}
+
+.inputs {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.input-box {
+    width:80%;
+    height:45px;
+    display:flex;
+    align-items: center;
+    border-radius: 6px;
+    background-color: white;
+    padding:3px;
+}
+
+.input-box input {
+    border:none;
+    outline:none;
+    width:80%;
+    height:30px;
+    margin:3px;
+    background-color: transparent;
+    font-size:15px;
+}
+
+.no-account {
+    text-align: center;
+    cursor: pointer;
+}
+
+.profile-photo {
+    width: 220px;
+    height: 59px;
+}
+
+.home {
+    cursor: pointer;
+}
+
+
+
+
+/*Signup css*/
+
+.wrapper
+{
+    width: 800px;
+    height: 500px;
+    border: 1px solid black;
+    box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    margin:50px auto;
+    
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    background-color: #284A8E;
+    padding:30px;
+}
+
+h1{
+    text-align: center;
+    color:white;
+    font-size: 50px;
+}
 
 .inputsLeft
 {
-    margin-top: 100px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -158,6 +179,13 @@ a
 .inputsLeft .input-box
 {
     width:160%;
+    height:40px;
+}
+
+.inputsLeft .input-box img
+{
+    width:20px;
+    height:20px;
 }
 #moreDiv
 {
@@ -166,7 +194,7 @@ a
 }
 #inputRight
 {
-    margin-top: 100px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -177,7 +205,3 @@ a
 {
     margin-left:10px;
 }
-
-
-
-

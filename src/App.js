@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
 import Signup from './Components/LoginSignup/Signup';
 import Login from './Components/LoginSignup/Login'
@@ -7,12 +7,16 @@ import SavedPage from './Components/WebPages/SavedPage'
 import SearchPage from './Components/WebPages/SearchPage'
 import {Route, BrowserRouter, Routes} from 'react-router-dom'
 import NavBar from "./Components/NavBar"
+import LoginSignup from './Components/LoginSignup/LoginSignup';
+import { Routes, Route } from "react-router-dom";
+
+import AddPost from './Components/Home/AddPost';
 
 function App() {
   return (
     <div>
       
-       <BrowserRouter>
+       {/* <BrowserRouter>
        <Routes>
         <Route index element ={<Login/>}/>
         <Route path="/login" element={<Login/>}/>
@@ -21,8 +25,16 @@ function App() {
         <Route path="/search" element={<SearchPage/>}/>
         <Route path="/saved" element={<SavedPage/>}/>
        </Routes>
-       </BrowserRouter>
+       </BrowserRouter> */}
 
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route exact path="/signup" element={<LoginSignup />} />
+        <Route path="/addpost" element={<AddPost />} />
+        <Route path="/home" element={<Dashboard/>}/>
+        <Route path="/search" element={<SearchPage/>}/>
+        <Route path="/saved" element={<SavedPage/>}/>
+      </Routes>
     </div>
   );
 }
