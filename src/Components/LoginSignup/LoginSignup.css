@@ -16,17 +16,71 @@
     cursor: pointer;
     font-family: Arial, Helvetica, sans-serif;
 }
+button
+{
+    display: block;
+    margin:20px auto ;
+    width: 150px;
+    height: 59px;
+    color: #fff;
+    background: #191970;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    border:none;
+    box-shadow: 8px 10px 16px -3px rgba(0,0,0,0.75);
+
+}
+
+button:hover
+{
+    background-color: #000080;
+}
+
+button:active
+{
+    background-color: #000080;
+    box-shadow: 6px 8px 3px 0px rgba(0, 0, 0, 0.75);
+    transform: translateY(1px);
+
+}
+.register-link
+{
+    text-align: center;
+}
+a
+{
+    color:white;
+    text-decoration: none;
+    /* text-align: center; */
+    display: block;
+    margin:auto;
+
+}
+img
+{
+    width:40%;
+    height:10%;
+    display:block;
+    margin:20px auto;
+
+}
 
 .container {
-    width: auto;
-    height: auto;
+    width: 30%;
+    height: 610px;
     border: 1px solid black;
-    box-shadow: 5px 5px grey;
+    /* box-shadow: 5px 5px grey; */
+    box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
     border-radius: 10px;
-    /* padding:10px; */
-    margin: auto;
-    margin-top: 20px;
+    margin:auto;
+    margin-top: 50px;
+    display: flex;
     flex-direction: column;
+    background-color: #284A8E;
+    padding:5px;
 }
 
 .header {
@@ -44,30 +98,31 @@ h1 {
 }
 
 .inputs {
-    margin-top: 55px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
-}
-
-.input {
-    display: flex;
     align-items: center;
-    margin: auto;
-    width: 480px;
-    height: 80px;
-    background: #eaeaea;
-    border-radius: 6px;
+    gap: 30px;
 }
 
-.input input {
-    height: 50px;
-    width: 400px;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #797979;
-    font-size: 19px;
+.input-box {
+    width:80%;
+    height:45px;
+    display:flex;
+    align-items: center;
+    border-radius: 6px;
+    background-color: white;
+    padding:3px;
+}
+
+.input-box input {
+    border:none;
+    outline:none;
+    width:80%;
+    height:30px;
+    margin:3px;
+    background-color: transparent;
+    font-size:15px;
 }
 
 .no-account {
@@ -82,4 +137,71 @@ h1 {
 
 .home {
     cursor: pointer;
+}
+
+
+
+
+/*Signup css*/
+
+.wrapper
+{
+    width: 800px;
+    height: 500px;
+    border: 1px solid black;
+    box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    margin:50px auto;
+    
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    background-color: #284A8E;
+    padding:30px;
+}
+
+h1{
+    text-align: center;
+    color:white;
+    font-size: 50px;
+}
+
+.inputsLeft
+{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.inputsLeft .input-box
+{
+    width:160%;
+    height:40px;
+}
+
+.inputsLeft .input-box img
+{
+    width:20px;
+    height:20px;
+}
+#moreDiv
+{
+    display:flex;
+    justify-content: space-between;
+}
+#inputRight
+{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    float:right;
+}
+
+#inputRight button
+{
+    margin-left:10px;
 }
