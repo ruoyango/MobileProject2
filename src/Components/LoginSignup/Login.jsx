@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import logo from '../../logo.svg'
 import { FaUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-
+import userIcon from "../Assets/account.png"
 const Login = () => {
     let navigate = useNavigate();
     const routeChange = () => {
@@ -31,7 +31,7 @@ const Login = () => {
             <form action="">
 
                 <div className='imge'>
-                    <img src={logo} />
+                    <img src={userIcon} />
                     {/* <FaUser id="userIcon"/> */}
                 </div>
                 <div className="inputs">

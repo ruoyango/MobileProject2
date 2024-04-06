@@ -68,7 +68,7 @@ img
 
 .container {
     width: 30%;
-    height: 610px;
+    height: 490px;
     border: 1px solid black;
     /* box-shadow: 5px 5px grey; */
     box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
@@ -76,7 +76,7 @@ img
     -moz-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
     border-radius: 10px;
     margin:auto;
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     background-color: #284A8E;
@@ -162,7 +162,7 @@ h1 {
     padding:30px;
 }
 
-h1{
+.wrapper h1{
     text-align: center;
     color:white;
     font-size: 50px;
@@ -170,7 +170,7 @@ h1{
 
 .inputsLeft
 {
-    margin-top: 50px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -194,7 +194,7 @@ h1{
 }
 #inputRight
 {
-    margin-top: 50px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

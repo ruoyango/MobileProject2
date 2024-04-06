@@ -8,7 +8,7 @@ import SearchPage from './Components/WebPages/SearchPage'
 import {Route, BrowserRouter, Routes} from 'react-router-dom'
 import NavBar from "./Components/NavBar"
 import LoginSignup from './Components/LoginSignup/LoginSignup';
-import { Routes, Route } from "react-router-dom";
+
 
 import AddPost from './Components/Home/AddPost';
 
