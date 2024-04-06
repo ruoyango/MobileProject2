@@ -169,7 +169,10 @@
     cursor: pointer;
 }
 
-
 .input {
     padding: 5px;
+}
+
+.openModalBtn{
+    cursor: pointer;
 }
