@@ -95,6 +95,7 @@ img
 .input-box input
 {
     border:none;
+    outline:none;
     width:80%;
     height:35px;
     margin:3px;

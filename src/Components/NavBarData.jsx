@@ -2,6 +2,8 @@ import React from 'react'
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
+import { MdOutlineAddBox } from "react-icons/md";
+import { MdLogout } from "react-icons/md";
 
 export const NavBarData =[
    {
@@ -13,25 +15,25 @@ export const NavBarData =[
    {
     title:'Search',
     path:'/search',
-    icon:<AiIcons.AiFillHome/>,
+    icon:<FaIcons.FaSearch />,
     cName:'nav-text'
    },
    {
     title:'Create',
     path:'/home',
-    icon:<AiIcons.AiFillHome/>,
+    icon:<MdOutlineAddBox />,
     cName:'nav-text'
    },
    {
     title:'Save',
     path:'/saved',
-    icon:<AiIcons.AiFillHome/>,
+    icon:<FaIcons.FaRegBookmark />,
     cName:'nav-text'
    },
    {
-    title:'Home',
+    title:'Logout',
     path:'/',
-    icon:<AiIcons.AiFillHome/>,
+    icon:<MdLogout />,
     cName:'nav-text'
    },
 
