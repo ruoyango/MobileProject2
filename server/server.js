@@ -23,27 +23,24 @@ con.connect(function(err) {
  console.log('connection successful');
 });
 
-
-
 app.get('/',(req,res)=>{
   res.json('OK');
 })
 
 app.post('/',(req,res)=>{
-	var {name,rollno} =req.body;
-	var records = [[req.body.name,req.body.rollno]];
-	if(records[0][0]!=null)
-	{
-		con.query("INSERT into student (name,rollno) VALUES ?",[records],function(err,res,fields){
+	// var {name,rollno} =req.body;
+	// var records = [[req.body.name,req.body.rollno]];
+	// if(records[0][0]!=null)
+	// {
+	// 	con.query("INSERT INTO posts VALUE (name, rollno)",[records],function(err,res,fields){
 
-			if(err) throw err;
+	// 		if(err) throw err;
 
-			console.log(res);
-		});
-	}
-	res.json('Form recieved');
-
-
+	// 		console.log(res);
+	// 	});
+	// }
+	// res.json('Form recieved');
+	console.log("postt");
 })
 
 app.listen(3001,()=>{

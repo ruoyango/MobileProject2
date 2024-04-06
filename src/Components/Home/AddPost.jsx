@@ -1,8 +1,6 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { DefaultPlayer as Video } from 'react-html5video'
 import './AddPost.css'
-
-//import AWS from 'aws-sdk';
 
 import logo from '../../logo.svg'
 import home from '../Assets/Home.png'
@@ -11,16 +9,43 @@ import searchlogo from '../Assets/searchlogo.png'
 import savelogo from '../Assets/savelogo.png'
 import uploadlogo from '../Assets/uploadlogo.png'
 
+//import ReactS3 from 'react-s3'
+// import { Amplify } from 'aws-amplify'
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+
 let totalImages = 0;
+const config = {
+    bucketName: 'mobile-project-2-data',
+    region: 'us-east-1',
+    accessKeyId: 'c2bb855def4dd0771a63f4004e0ef40675eaf5c1314e178b818d09a1883ab314',
+    secretAccessKey: 'c2bb855def4dd0771a63f4004e0ef40675eaf5c1314e178b818d09a1883ab314',
+}
+const client = new S3Client(config);
 
 const AddPost = () => {
+
+    // useEffect(() => {
+    //     Amplify.configure({
+    //         Auth: {
+    //             identityPoolId: "us-east-1:cc11ded1-d18a-459a-aac6-b604abdde408",
+    //             region: "us-east-1",
+    //         },
+    
+    //         Storage: {
+    //             AWSS3: {
+    //               bucket: "mobile-project-2-data",
+    //               region: "us-east-1",
+    //             },
+    //         },
+    //     })
+    
+    // }, []);
 
     const [images, setImages] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
     const [filesAdded, setFilesAdded] = useState(false);
     const [currImageIndex, setCurrImageIndex] = useState();
     const fileInputRef = useRef(null);
-    const formRef = useRef(null);
 
     function addingFilesIntoArray(files) {
         for (let i = 0; i < files.length; ++i) {
@@ -93,39 +118,20 @@ const AddPost = () => {
     }
 
     
-    // const uploadFile = async () => {
-    //     const S3_BUCKET = "mobile-project-2-data";
-    //     const REGION = "us-east-1";
-
-    //     // AWS.config.update({
-    //     //     accessKeyId: "youraccesskeyhere",
-    //     //     secretAccessKey: "yoursecretaccesskeyhere",
-    //     // });
-    //     const s3 = new AWS.S3({
-    //         params: { Bucket: S3_BUCKET },
-    //         region: REGION,
-    //     });
-
-    //     const params = {
-    //         Bucket: S3_BUCKET,
-    //         Key: images[0].name,
-    //         Body: images[0],
-    //     };
-
-    //     var upload = s3
-    //     .putObject(params)
-    //     .on("httpUploadProgress", (evt) => {
-    //         console.log(
-    //         "Uploading " + parseInt((evt.loaded * 100) / evt.total) + "%"
-    //         );
-    //     })
-    //     .promise();
-
-    //     await upload.then((err, data) => {
-    //     console.log(err);
-    //     alert("File uploaded successfully.");
-    //     });
-    // };
+    const uploadFile = async () => {
+        const command = new PutObjectCommand({
+          Bucket: "mobile-project-2-data",
+          Region: "us-east-1",
+          Key: images[0].name,
+          Body: "Hello S3!",
+        });
+        try {
+          const response = await client.send(command);
+          console.log(response);
+        } catch (err) {
+          console.error(err);
+        }
+    };
 
     return (
         <div className='container'>
@@ -215,7 +221,7 @@ const AddPost = () => {
                 </div>
 
                 <div className="submit-container">
-                    <button className="submit" >Post</button>
+                    <div className="submit" onClick={uploadFile}>Post</div>
                 </div>
             </form>
         </div>
