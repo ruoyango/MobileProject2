@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react'
 import { DefaultPlayer as Video } from 'react-html5video'
-
 import './AddPost.css'
+
+//import AWS from 'aws-sdk';
 
 import logo from '../../logo.svg'
 import home from '../Assets/Home.png'
@@ -19,6 +20,7 @@ const AddPost = () => {
     const [filesAdded, setFilesAdded] = useState(false);
     const [currImageIndex, setCurrImageIndex] = useState();
     const fileInputRef = useRef(null);
+    const formRef = useRef(null);
 
     function addingFilesIntoArray(files) {
         for (let i = 0; i < files.length; ++i) {
@@ -32,6 +34,7 @@ const AddPost = () => {
                         type: files[i].type.split("/")[0],
                     },
                 ])
+
                 setFilesAdded(true);
                 ++totalImages;
             }
@@ -89,6 +92,41 @@ const AddPost = () => {
         console.log("currImageIndex: " + currImageIndex);
     }
 
+    
+    // const uploadFile = async () => {
+    //     const S3_BUCKET = "mobile-project-2-data";
+    //     const REGION = "us-east-1";
+
+    //     // AWS.config.update({
+    //     //     accessKeyId: "youraccesskeyhere",
+    //     //     secretAccessKey: "yoursecretaccesskeyhere",
+    //     // });
+    //     const s3 = new AWS.S3({
+    //         params: { Bucket: S3_BUCKET },
+    //         region: REGION,
+    //     });
+
+    //     const params = {
+    //         Bucket: S3_BUCKET,
+    //         Key: images[0].name,
+    //         Body: images[0],
+    //     };
+
+    //     var upload = s3
+    //     .putObject(params)
+    //     .on("httpUploadProgress", (evt) => {
+    //         console.log(
+    //         "Uploading " + parseInt((evt.loaded * 100) / evt.total) + "%"
+    //         );
+    //     })
+    //     .promise();
+
+    //     await upload.then((err, data) => {
+    //     console.log(err);
+    //     alert("File uploaded successfully.");
+    //     });
+    // };
+
     return (
         <div className='container'>
             <div className="header">
@@ -100,84 +138,86 @@ const AddPost = () => {
                 <img src={logoutlogo} className="home" alt="logout" />
             </div>
 
-            <div className="card">
-                <div className="dragArea" onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
-                    { filesAdded ? (
-                        <div className="containerView">
-                            {images[currImageIndex].type === "image" ? (
-                                    <div className="image">
-                                        {totalImages > 1 ? (
-                                            <>
+            <form method="post" action="http://localhost:3001">
+                <div className="card">
+                    <div className="dragArea" onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
+                        { filesAdded ? (
+                            <div className="containerView">
+                                {images[currImageIndex].type === "image" ? (
+                                        <div className="image">
+                                            {totalImages > 1 ? (
+                                                <>
+                                                <span className="previous" onClick={previousImage}>&lt;</span>
+                                                <span className="next" onClick={nextImage}>&gt;</span>
+                                                </>
+                                            ) : (
+                                                <></>
+                                            )}
+                                            <img src={images[currImageIndex].url} alt={images[currImageIndex].name}/>
+                                        </div>
+                                    ) : (
+                                        <div className="video">
+                                            <Video className="videoView">
+                                                <source src={images[currImageIndex].url} type="video/mp4" alt={images[currImageIndex].name}/>
+                                            </Video>
                                             <span className="previous" onClick={previousImage}>&lt;</span>
                                             <span className="next" onClick={nextImage}>&gt;</span>
-                                            </>
-                                        ) : (
-                                            <></>
-                                        )}
-                                        <img src={images[currImageIndex].url} alt={images[currImageIndex].name}/>
+                                        </div>
+                                    )
+                                }
+                            </div>
+                        ) : (
+                            <></>
+                        )
+                        }
+                    </div>
+                    <div className="dragAreaText">
+                        {isDragging ? (
+                                <>
+                                <span className="select">Drop image</span>
+                                <input type="file" id="myfile" name="myfile" multiple ref={fileInputRef} onChange={onFilesSelect}></input>
+                                </>
+                            ) : (
+                                <>
+                                Drag and drop videos / images on top or {" "}
+                                <span className="select" role="button" onClick={selectFiles}>
+                                    Browse
+                                </span>
+                                <input type="file" id="myfile" name="myfile" multiple ref={fileInputRef} onChange={onFilesSelect}></input>
+                                </>
+                            )}
+                    </div>
+                    {filesAdded ? (
+                        <div className="container">
+                            {images?.map((images, index) => (
+                                images.type === "image" ? (
+                                    <div className="image"  key={index}>
+                                        <span className="delete" onClick={() => deleteImage(index)}>&times;</span>
+                                        <img src={images.url} alt={images.name}/>
                                     </div>
                                 ) : (
-                                    <div className="video">
-                                        <Video className="videoView">
-                                            <source src={images[currImageIndex].url} type="video/mp4" alt={images[currImageIndex].name}/>
-                                        </Video>
-                                        <span className="previous" onClick={previousImage}>&lt;</span>
-                                        <span className="next" onClick={nextImage}>&gt;</span>
-                                    </div>
+                                    <Video className="video">
+                                        <source src={images.url} type="video/webm" alt={images.name}/>
+                                    </Video>
                                 )
-                            }
+                            ))}
                         </div>
                     ) : (
                         <></>
-                    )
-                    }
+                    )}
+                    
                 </div>
-                <div className="dragAreaText">
-                    {isDragging ? (
-                            <>
-                            <span className="select">Drop image</span>
-                            <input type="file" id="myfile" name="myfile" multiple ref={fileInputRef} onChange={onFilesSelect}></input>
-                            </>
-                        ) : (
-                            <>
-                            Drag and drop videos / images on top or {" "}
-                            <span className="select" role="button" onClick={selectFiles}>
-                                Browse
-                            </span>
-                            <input type="file" id="myfile" name="myfile" multiple ref={fileInputRef} onChange={onFilesSelect}></input>
-                            </>
-                        )}
-                </div>
-                {filesAdded ? (
-                    <div className="container">
-                        {images?.map((images, index) => (
-                            images.type === "image" ? (
-                                <div className="image"  key={index}>
-                                    <span className="delete" onClick={() => deleteImage(index)}>&times;</span>
-                                    <img src={images.url} alt={images.name}/>
-                                </div>
-                            ) : (
-                                <Video className="video">
-                                    <source src={images.url} type="video/webm" alt={images.name}/>
-                                </Video>
-                            )
-                        ))}
+
+                <div className="inputs">
+                    <div className="input">
+                        <input type="text" id="caption" placeholder='Add caption here...' />
                     </div>
-                ) : (
-                    <></>
-                )}
-                
-            </div>
-
-            <div className="inputs">
-                <div className="input">
-                    <input type="text" id="caption" placeholder='Add caption here...' />
                 </div>
-            </div>
 
-            <div className="submit-container">
-                <div className="submit">Post</div>
-            </div>
+                <div className="submit-container">
+                    <button className="submit" >Post</button>
+                </div>
+            </form>
         </div>
     )
 }
