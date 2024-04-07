@@ -9,52 +9,84 @@ import axios from 'axios';
 
 const Dashboard = () => {
 
-    const [description, setDescription] = useState("");
-    const [caption, setCaption] = useState("");
+    const [descriptions, setDescriptions] = useState([]);
+    const [captions, setCaptions] = useState([]);
 
     useEffect(() => {
         axios.get('http://54.198.89.107:3001/')
         .then((result) => {
             console.log(result);
-            setCaption(result.caption);
+            console.log(result.data[0].caption);
+            console.log(result.data[0].description);
+
+            for (let i = 0; i < result.data.length; ++i) {
+                setCaptions((prevCaptions) => [
+                    ...prevCaptions,
+                    {
+                        name: result.data[i].caption
+                    },
+                ])
+                setDescriptions((prevDescriptions) => [
+                    ...prevDescriptions,
+                    {
+                        name: result.data[i].description
+                    },
+                ])
+
+            }
+            // setCaptions(result.data[0].caption);
+            // setDescriptions(result.data[0].description);
         })
         .catch((e) => {
             console.log(e);
         })
     }, [])
 
+    // useEffect(() => {
+    //     axios.get('http://54.198.89.107:3001/')
+    //     .then((result) => {
+    //         console.log(result);
+    //         setCaption(result.caption);
+    //     })
+    //     .catch((e) => {
+    //         console.log(e);
+    //     })
+    // }, [caption, description])
 
+    
     return (
         <>
 
             <NavBar />
-            <div className="search-box">
-                <input className="search-input"/>
-            </div>
+            <div className='dashboard'>
 
-            <div className='board'>
-                <div className='post'>
+                {captions?.map((caption, index) => (
+                    <>
+                    <div className='dashpost' key={index}>
 
-                    <h3>@Account name</h3>
-                    
-                    <div className='captionDiv'>
-                        <p className="caption">{caption}</p>
-                    </div>
-                    
-                    <div className='descriptionDiv'>
-                        <p className="description">THIS IS THE DESCRIP. THIS IS THE DESCRIPT. THIS IS THE DESCRIPTION. THIS IS THE DESCRIPTION. THIS IS THE DESCRIPTION. THIS IS THE DESCRIPTION. </p>
-                    </div>
-                    
-                    <div className='belowness'>
-                        <div id="icons">
-                            <CiIcons.CiHeart size={70} style={{padding:'5px'}} />
-                            <HiOutlineChatBubbleOvalLeft size={70} style={{padding:'5px'}}/>
+                        <h3>@Account name</h3>
+                        
+                        <div className='captionDiv'>
+                            <p className="caption">{caption.name}</p>
                         </div>
-                        <CiIcons.CiBookmark size={70} style={{padding:'5px'}}/>
-                    </div>
+                        
+                        <div className='descriptionDiv'>
+                            <p className="description">{descriptions[index].name}</p>
+                        </div>
+                        
+                        <div className='belowness'>
+                            <div id="icons">
+                                <CiIcons.CiHeart size={70} style={{padding:'5px'}} />
+                                <HiOutlineChatBubbleOvalLeft size={70} style={{padding:'5px'}}/>
+                            </div>
+                            <CiIcons.CiBookmark size={70} style={{padding:'5px'}}/>
+                        </div>
 
-                    <Link to="/" style={{color:'grey',marginTop:'30px', fontSize:"25px", padding:"15px"}}> View comments here</Link>
-                </div>
+                        <Link to="/" style={{color:'grey',marginTop:'30px', fontSize:"25px", padding:"15px"}}> View comments here</Link>
+                    </div>
+                    </>
+                ))}
+
             </div>
 
         </>
