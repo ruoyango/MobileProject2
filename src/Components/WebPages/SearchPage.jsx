@@ -22,6 +22,7 @@ const SearchPage = ({ pageTitle }) => {
   const [bookmarkIDs, setBookmarkIDs] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [likedPostIDs, setLikedPostIDs] = useState([]);
+  const [likeIDs, setLikeIDs] = useState([]);
 
   useEffect(() => {
  
@@ -105,6 +106,7 @@ const SearchPage = ({ pageTitle }) => {
     .then((otherOtherResult) => {
 
         setLikedPostIDs([]);
+        setLikeIDs([]);
         for (let i = 0; i < otherOtherResult.data.length; ++i) {
             if (otherOtherResult.data[i].userID === getCurrentUsername()) {
               setLikedPostIDs((prevLikedPostIDs) => [
@@ -113,6 +115,12 @@ const SearchPage = ({ pageTitle }) => {
                       name: otherOtherResult.data[i].postID
                   },
               ])
+              setLikeIDs((prevLikeIDs) => [
+                  ...prevLikeIDs,
+                  {
+                      name: otherOtherResult.data[i].likeID
+                  },
+              ]);
             }
         }
     })
@@ -219,6 +227,7 @@ const SearchPage = ({ pageTitle }) => {
     .then((result) => {
       console.log(result.data);
       setLikedPostIDs([]);
+      setLikeIDs([]);
       
       for (let i = 0; i < result.data.length; ++i) {
         if (result.data[i].userID === getCurrentUsername()) {
@@ -228,6 +237,12 @@ const SearchPage = ({ pageTitle }) => {
                   name: result.data[i].postID
               },
           ])
+          setLikeIDs((prevLikeIDs) => [
+              ...prevLikeIDs,
+              {
+                  name: result.data[i].likeID
+              },
+          ]);
         }
       }
       console.log(likedPostIDs);
@@ -257,14 +272,16 @@ const SearchPage = ({ pageTitle }) => {
   }
 
   function removeLike(index) {
+    
+    let likeIndex = likedPostIDs.findIndex(e => e.name === postIDs[index].name);
 
     axios.post(process.env.REACT_APP_DATABASE_URL + '/remove/likes/', {
-      postID: postIDs[index].name,
-      userID: getCurrentUsername(),
+      likeID: likeIDs[likeIndex].name
     })
     .then((result) => {
       console.log(result.data);
       setLikedPostIDs([]);
+      setLikeIDs([]);
       
       for (let i = 0; i < result.data.length; ++i) {
         if (result.data[i].userID === getCurrentUsername()) {
@@ -273,7 +290,13 @@ const SearchPage = ({ pageTitle }) => {
               {
                   name: result.data[i].postID
               },
-          ])
+          ]);
+          setLikeIDs((prevLikeIDs) => [
+              ...prevLikeIDs,
+              {
+                  name: result.data[i].likeID
+              },
+          ]);
         }
       }
       console.log(likedPostIDs);

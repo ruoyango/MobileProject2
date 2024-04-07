@@ -123,13 +123,13 @@ app.post('/remove/bookmark/',(req,res)=>{
 })
 
 app.post('/remove/likes/',(req,res)=>{
-	// removing based on bookmarkID
-	let postID = [req.body.postID];
-	let userID = [req.body.userID];
-	var sql = "DELETE FROM likes WHERE postID = ? AND userID = ?";
+	// find based on userID
+	let likeID = [req.body.likeID];
+	var sql = "SELECT FROM likes WHERE likeID = ?";
 
-	con.query(sql,[postID],[userID],function(err, result) {
+	con.query(sql, [likeID], function(err, result) {
 		if (err) throw err;
+
 		console.log("Number of records removed for likes: " + result.affectedRows);
 
 		var newsql = "SELECT * FROM likes";
