@@ -81,5 +81,5 @@ otherapp.listen(3000,()=>{
 })
 
 otherapp.get('/.well-known/pki-validation/BFD4C24715A0FB4B39B6346110D58EC5.txt', (req, res) => {
-	res.sendFile('/home/ec2-user/MobileProject/server/BFD4C24715A0FB4B39B6346110D58EC5.txt');
+	res.sendFile('/home/ec2-user/MobileProject2/server/BFD4C24715A0FB4B39B6346110D58EC5.txt');
 })
