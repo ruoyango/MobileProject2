@@ -1,9 +1,16 @@
+/*
+Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Date: 1 April 2024
+Summary: LoginSignup.jsx implements the functionality for users to sign up, 
+including validation of form fields and creating a new user account.
+*/
 import { Button, TextField} from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import userpool from '../../userpool';
 import './LoginSignup.css'
+
 const LoginSignup = () => {
   const Navigate = useNavigate();
 

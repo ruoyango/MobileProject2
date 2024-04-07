@@ -1,3 +1,9 @@
+/*
+Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Date: 1 April 2024
+Summary: Authentication.js provides functions for user authentication, including 
+login, forgot password, reset password, and sign-up confirmation.
+*/
 import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import userpool from '../../userpool';
 export const authenticate=(Email,Password)=>{

@@ -1,3 +1,10 @@
+/*
+Authors: Lim Hui Ching
+Date: 1 April 2024
+Summary: Modal.js implements a modal component that displays a 
+confirmation dialog for logging out, allowing the user to either cancel 
+the logout or proceed with it.
+*/
 import React from "react";
 import "./Modal.css";
 import { signOut } from '../Services/Authentication'; // Import logout function
