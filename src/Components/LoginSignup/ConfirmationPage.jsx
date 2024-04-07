@@ -1,3 +1,9 @@
+/*
+Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Date: 1 April 2024
+Summary: ConfirmationPage.jsx handles the user confirmation process after signing up, 
+allowing users to enter a verification code and confirm their account.
+*/
 import React, { useState } from 'react';
 import { Button, TextField } from '@mui/material';
 import { confirmSignUp } from '../Services/Authentication'; // Import function to handle confirmation

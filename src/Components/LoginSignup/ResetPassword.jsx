@@ -1,3 +1,8 @@
+/*
+Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Date: 1 April 2024
+Summary: ResetPassword.jsx allows users to reset their password by entering a verification code and a new password.
+*/
 import React, { useState } from 'react';
 import { Button, TextField } from '@mui/material';
 import { resetPassword } from '../Services/Authentication';

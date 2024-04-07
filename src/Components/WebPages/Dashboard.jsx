@@ -1,3 +1,8 @@
+/*
+Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Date: 1 April 2024
+Summary: Dashboard.jsx fetches and displays the user's posts from the database, including captions, descriptions, and usernames.
+*/
 import React, { useState, useEffect } from 'react'
 import "./style.css"
 import NavBar from "../NavBar"

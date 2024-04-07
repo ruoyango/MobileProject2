@@ -1,3 +1,8 @@
+/*
+Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Date: 1 April 2024
+Summary: SearchPage.jsx allows users to search for posts by username and displays the matching posts.
+*/
 import React, { useState, useEffect } from 'react'
 import "./style.css"
 import NavBar from '../NavBar'

@@ -1,12 +1,10 @@
+/*
+Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Date: 1 April 2024
+Summary: AddPost.jsx allows users to create and upload new posts, including adding captions and descriptions.
+*/
 import React, { useState } from 'react'
 import './AddPost.css'
-// import Modal from "./Modal.js";
-// import logo from '../../logo.svg'
-// import home from '../Assets/Home.png'
-// import logoutlogo from '../Assets/logoutlogo.png'
-// import searchlogo from '../Assets/searchlogo.png'
-// import savelogo from '../Assets/savelogo.png'
-// import uploadlogo from '../Assets/uploadlogo.png'
 import axios from 'axios';
 import NavBar from '../NavBar.jsx';
 
