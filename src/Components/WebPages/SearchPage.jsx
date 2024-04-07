@@ -198,6 +198,7 @@ const SearchPage = ({ pageTitle }) => {
       userID: getCurrentUsername(),
     })
     .then((result) => {
+      console.log(result);
       setLikedPostIDs([]);
       
       for (let i = 0; i < result.data.length; ++i) {

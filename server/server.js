@@ -140,7 +140,6 @@ app.post('/insert/likes/',(req,res)=>{
 
 		con.query(sql,[records],function(err, result) {
 			if (err) throw err;
-			res.json(result);
 			console.log("Number of records inserted for likes: " + result.affectedRows);
 
 			var newsql = "SELECT likes.postID FROM likes";
