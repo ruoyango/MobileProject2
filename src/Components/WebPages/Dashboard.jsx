@@ -17,8 +17,11 @@ const Dashboard = ({pageTitle}) => {
     const [captions, setCaptions] = useState([]);
     const [users, setUsers] = useState([]);
     const [postIDs, setPostIDs] = useState([]);
+    const [likeCount, setLikeCount] = useState([]);
     const [bookmarkedPostIDs, setBookmarkedPostIDs] = useState([]);
     const [bookmarkIDs, setBookmarkIDs] = useState([]);
+    const [likedPostIDs, setLikedPostIDs] = useState([]);
+    const [likeIDs, setLikeIDs] = useState([]);
 
     useEffect(() => {
         axios.get(process.env.REACT_APP_DATABASE_URL + '/query/posts/')
@@ -27,6 +30,7 @@ const Dashboard = ({pageTitle}) => {
             setDescriptions([]);
             setUsers([]);
             setPostIDs([]);
+            setLikeCount([]);
             
             for (let i = 0; i < result.data.length; ++i) {
                 setCaptions((prevCaptions) => [
@@ -51,6 +55,12 @@ const Dashboard = ({pageTitle}) => {
                     ...prevPostIDs,
                     {
                         name: result.data[i].postID
+                    },
+                ])
+                setLikeCount((prevLikeCounts) => [
+                    ...prevLikeCounts,
+                    {
+                        name: result.data[i].likeCount
                     },
                 ])
             }
@@ -81,6 +91,31 @@ const Dashboard = ({pageTitle}) => {
                 }
             }
             console.log(bookmarkedPostIDs);
+        })
+        .catch((e) => {
+            console.log(e);
+        })
+        axios.get(process.env.REACT_APP_DATABASE_URL + '/query/likes/')
+        .then((otherOtherResult) => {
+    
+            setLikedPostIDs([]);
+            setLikeIDs([]);
+            for (let i = 0; i < otherOtherResult.data.length; ++i) {
+                if (otherOtherResult.data[i].userID === getCurrentUsername()) {
+                  setLikedPostIDs((prevLikedPostIDs) => [
+                      ...prevLikedPostIDs,
+                      {
+                          name: otherOtherResult.data[i].postID
+                      },
+                  ])
+                  setLikeIDs((prevLikeIDs) => [
+                      ...prevLikeIDs,
+                      {
+                          name: otherOtherResult.data[i].likeID
+                      },
+                  ]);
+                }
+            }
         })
         .catch((e) => {
             console.log(e);
@@ -172,6 +207,115 @@ const Dashboard = ({pageTitle}) => {
         })
     }
     
+    function addLike(index) {
+        
+        axios.post(process.env.REACT_APP_DATABASE_URL + '/insert/likes/', {
+        postID: postIDs[index].name,
+        userID: getCurrentUsername(),
+        })
+        .then((result) => {
+        console.log(result.data);
+        setLikedPostIDs([]);
+        setLikeIDs([]);
+        
+        for (let i = 0; i < result.data.length; ++i) {
+            if (result.data[i].userID === getCurrentUsername()) {
+            setLikedPostIDs((prevLikedPostIDs) => [
+                ...prevLikedPostIDs,
+                {
+                    name: result.data[i].postID
+                },
+            ])
+            setLikeIDs((prevLikeIDs) => [
+                ...prevLikeIDs,
+                {
+                    name: result.data[i].likeID
+                },
+            ]);
+            }
+        }
+        console.log(likedPostIDs);
+        })
+        .catch((e) => {
+            console.log(e);
+        })
+        
+        axios.post(process.env.REACT_APP_DATABASE_URL + '/increment/posts/likeCount/', {
+        postID: postIDs[index].name
+        })
+        .then((result) => {
+        setLikeCount([]);
+        
+        for (let i = 0; i < result.data.length; ++i) {
+            setLikeCount((prevLikeCounts) => [
+            ...prevLikeCounts,
+            {
+                name: result.data[i].likeCount
+            },
+            ])
+        }
+        })
+        .catch((e) => {
+            console.log(e);
+        })
+    }
+
+    function removeLike(index) {
+        
+        let likeIndex = likedPostIDs.findIndex(e => e.name === likedPostIDs[index].name);
+        console.log(likeIndex)
+
+        axios.post(process.env.REACT_APP_DATABASE_URL + '/remove/likes/', {
+        likeID: likeIDs[likeIndex].name
+        })
+        .then((result) => {
+        console.log(result.data);
+        setLikedPostIDs([]);
+        setLikeIDs([]);
+        
+        for (let i = 0; i < result.data.length; ++i) {
+            if (result.data[i].userID === getCurrentUsername()) {
+            setLikedPostIDs((prevLikedPostIDs) => [
+                ...prevLikedPostIDs,
+                {
+                    name: result.data[i].postID
+                },
+            ]);
+            setLikeIDs((prevLikeIDs) => [
+                ...prevLikeIDs,
+                {
+                    name: result.data[i].likeID
+                },
+            ]);
+            }
+        }
+        console.log(likedPostIDs);
+        })
+        .catch((e) => {
+            console.log(e);
+        })
+        
+        axios.post(process.env.REACT_APP_DATABASE_URL + '/decrement/posts/likeCount/', {
+        postID: postIDs[index].name
+        })
+        .then((result) => {
+        setLikeCount([]);
+        
+        for (let i = 0; i < result.data.length; ++i) {
+            setLikeCount((prevLikeCounts) => [
+            ...prevLikeCounts,
+            {
+                name: result.data[i].likeCount
+            },
+            ])
+        }
+        })
+        .catch((e) => {
+            console.log(e);
+        })
+    }
+
+    
     return (
         <>
             <NavBar pageTitle="Dashboard" />
@@ -192,8 +336,13 @@ const Dashboard = ({pageTitle}) => {
                         </div>
                         
                         <div className='belowness'>
-                            <div id="icons">
-                                <CiIcons.CiHeart size={70} style={{padding:'5px'}} />
+                            <div id="icons" className='icons'>
+                                { likedPostIDs.find(e => e.name === postIDs[index].name) ? (
+                                    <CiIcons.CiHeart size={70} style={{padding:'5px'}} className='bookmarkIconAdded' onClick={() => removeLike(index)}/>
+                                ) : (
+                                    <CiIcons.CiHeart size={70} style={{padding:'5px'}} className='bookmarkIcon' onClick={() => addLike(index)}/>
+                                )}
+                                <p>{likeCount[index].name} likes</p>
                             </div>
 
                             { bookmarkedPostIDs.find(e => e.name === postIDs[index].name) ? (
