@@ -1,59 +1,119 @@
-import React from 'react'
-import './LoginSignup.css'
-// import { useNavigate } from "react-router-dom";
-// import logo from '../../logo.svg'
-// import { FaUser } from "react-icons/fa";
-import { Link } from 'react-router-dom';
-import userIcon from "../Assets/account.png"
+import React, { useState } from 'react';
+import { Button, TextField, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { authenticate } from '../Services/Authentication';
+import './Login.css'
+import userpool from '../../userpool';
+
 const Login = () => {
-    // let navigate = useNavigate();
-    // const routeChange = () => {
-    //     let path = "/signup";
-    //     navigate(path);
-    // }
-    return (
-        <div className='container'>
-            {/* <div className="header">
-            <img src={logo} className="profile-photo" alt="profile" />
-                <div className="inputs">
-                    <div className="input">
-                        <input type="text" id="fusername" placeholder='Username' />
-                    </div>
-                    <div className="input">
-                        <input type="password" id="fpassword" placeholder='Password' />
-                    </div>
-                </div>
-            </div>
-            <div className="submit-container" onClick={() => navigate('/addpost')}>
-                <div className="submit">Log in</div>
-            </div>
-            <div className="no-account" onClick={routeChange}>Don't have an account?</div> */}
-            <form action="">
+  const Navigate = useNavigate();
 
-                <div className='imge'>
-                    <img src={userIcon} alt=""/>
-                    {/* <FaUser id="userIcon"/> */}
-                </div>
-                <div className="inputs">
-                    <div className='input-box'>
-                        <input type="text" id="fusername" placeholder='Username' required />
-                    </div>
-                    <div className='input-box'>
-                        <input type="password" id="fpassword" placeholder='Password' required />
-                    </div>
+  const [emailOrUsername, setEmailOrUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailOrUsernameErr, setEmailOrUsernameErr] = useState('');
+  const [passwordErr, setPasswordErr] = useState('');
+  const [loginErr, setLoginErr] = useState('');
 
-                </div>
+  const formInputChange = (formField, value) => {
+    if (formField === 'emailOrUsername') {
+      setEmailOrUsername(value);
+    }
+    if (formField === 'password') {
+      setPassword(value);
+    }
+  };
 
-                <button type="submit">Login</button>
-                <div className='register-link'>
-                    {/* <a href="Signup.jsx"> Don't have an account?</a> */}
-                    <Link className='a' to="/signup">Don't have an account? Sign up!</Link>
+  const validation = () => {
+    return new Promise((resolve, reject) => {
+      if (emailOrUsername === '' && password === '') {
+        setEmailOrUsernameErr('Email or Username is Required');
+        setPasswordErr('Password is required');
+        resolve({
+          emailOrUsername: 'Email or Username is Required',
+          password: 'Password is required',
+        });
+      } else if (emailOrUsername === '') {
+        setEmailOrUsernameErr('Email or Username is Required');
+        resolve({ emailOrUsername: 'Email or Username is Required', password: '' });
+      } else if (password === '') {
+        setPasswordErr('Password is required');
+        resolve({ emailOrUsername: '', password: 'Password is required' });
+      } else if (password.length < 6) {
+        setPasswordErr('Password must be 6 characters long');
+        resolve({ emailOrUsername: '', password: 'Password must be 6 characters long' });
+      } else {
+        resolve({ emailOrUsername: '', password: '' });
+      }
+    });
+  };
 
-                </div>
+  const handleLogin = () => {
+    setEmailOrUsernameErr('');
+    setPasswordErr('');
+    validation()
+      .then((res) => {
+        if (res.emailOrUsername === '' && res.password === '') {
+          authenticate(emailOrUsername, password)
+            .then((data) => {
+              setLoginErr('');
+              Navigate('/addpost');
+            })
+            .catch((err) => {
+              console.log(err);
+              setLoginErr(err.message);
+            });
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
-            </form>
+  const handleSignUp = () => {
+    // Redirect to sign up page
+    Navigate('/signup');
+  };
+
+  const handleForgotPassword = () => {
+    // Redirect to forgot password page
+    Navigate('/forgotpassword');
+  };
+
+  return (
+    <div className="login">
+      <div className="form">
+        <div className="formfield">
+          <TextField
+            value={emailOrUsername}
+            onChange={(e) => formInputChange('emailOrUsername', e.target.value)}
+            label="Email or Username"
+            helperText={emailOrUsernameErr}
+          />
         </div>
-    )
-}
+        <div className="formfield">
+          <TextField
+            value={password}
+            onChange={(e) => formInputChange('password', e.target.value)}
+            type="password"
+            label="Password"
+            helperText={passwordErr}
+          />
+        </div>
+        <div className="formfield">
+          <Button type="submit" variant="contained" onClick={handleLogin}>
+            Login
+          </Button>
+        </div>
+        <Typography variant="body">{loginErr}</Typography>
+        <div className="formfield">
+          <Button variant="text" onClick={handleSignUp}>
+            Sign Up
+          </Button>
+          <Button variant="text" onClick={handleForgotPassword}>
+            Forgot Password
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Login
+export default Login;
