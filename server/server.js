@@ -151,6 +151,15 @@ app.post('/insert/likes/',(req,res)=>{
 	});
 })
 
+app.get('/query/likes/',(req,res)=>{
+	var query ="SELECT * FROM likes;";
+	con.query(query, function (err, results) {
+		if (err) throw err;
+		res.json(results);
+		console.log(results);
+	});
+})
+
 app.post('/increment/posts/likeCount/',(req,res)=>{
 	// incrementing based on likeID
 	var postID = [req.body.postID];

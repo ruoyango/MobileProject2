@@ -100,6 +100,25 @@ const SearchPage = ({ pageTitle }) => {
     .catch((e) => {
         console.log(e);
     })
+    
+    axios.get(process.env.REACT_APP_DATABASE_URL + '/query/likes/')
+    .then((otherOtherResult) => {
+
+        setLikedPostIDs([]);
+        for (let i = 0; i < otherOtherResult.data.length; ++i) {
+            if (otherOtherResult.data[i].userID === getCurrentUsername()) {
+              setLikedPostIDs((prevLikedPostIDs) => [
+                  ...prevLikedPostIDs,
+                  {
+                      name: otherOtherResult.data[i].postID
+                  },
+              ])
+            }
+        }
+    })
+    .catch((e) => {
+        console.log(e);
+    })
   }, [])
 
   function handleSearch(event) {
