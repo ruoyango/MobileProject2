@@ -63,17 +63,7 @@ app.get('/query/posts/userID/',(req,res)=>{
 	con.query(query, [req.body.search], function (err, results) {
 		if (err) throw err;
 		console.log(results);
-		currentPostNo = results.length;
-		console.log(currentPostNo);
-		
-		// inserting the value
-		var records = [[currentPostNo, req.body.userID, req.body.description, req.body.caption]];
-		var sql = "INSERT INTO posts VALUES ?";
-
-		con.query(sql,[records],function(err, result) {
-			if (err) throw err;
-			console.log("Number of records inserted: " + result.affectedRows);
-		});
+		res.json(results);
 	});
 })
 
