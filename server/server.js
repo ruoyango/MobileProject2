@@ -28,7 +28,6 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/',(req,res)=>{
-	var { name } = req.body;
 	// var records = [[req.body.name,req.body.rollno]];
 	// if(records[0][0]!=null)
 	// {
@@ -40,7 +39,7 @@ app.post('/',(req,res)=>{
 	// 	});
 	// }
 	// res.json('Form recieved');
-	console.log(req.body.name);
+	console.log(req.params.name);
 	res.send("This works!");
 })
 
