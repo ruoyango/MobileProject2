@@ -224,7 +224,7 @@ const AddPost = () => {
                 </div>
 
                 <div className="submit-container">
-                    <div className="submit" onClick={uploadFile}>Post</div>
+                    <div type="submit" className="submit" onClick={uploadFile}>Post</div>
                 </div>
             </form>
         </div>
