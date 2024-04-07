@@ -26,10 +26,15 @@ con.connect(function(err) {
 
 // for testing
 app.get('/',(req,res)=>{
-  res.json('OK');
+	var query ="SELECT * FROM posts;";
+	con.query(query, function (err, results) {
+		if (err) throw err;
+		res.json(results);
+		console.log(results);
+	});
 })
 
-app.post('/',(req,res)=>{
+app.post('/insert/',(req,res)=>{
 	// var records = [[req.body.name,req.body.rollno]];
 	// if(records[0][0]!=null)
 	// {
