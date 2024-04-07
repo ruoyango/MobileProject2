@@ -1,4 +1,4 @@
-.signup {
+.login {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,4 +51,19 @@
   
   .button button:hover {
     background-color: #0056b3;
+  }
+  
+  .links {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .links a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease;
+  }
+  
+  .links a:hover {
+    color: #0056b3;
   }
