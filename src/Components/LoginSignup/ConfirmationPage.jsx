@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import './ConfirmationPage.css'
 
 const ConfirmationPage = () => {
-
+  const Navigate = useNavigate();
   const location = useLocation();
   let username = location.state.username;
 
@@ -20,7 +20,7 @@ const ConfirmationPage = () => {
     confirmSignUp(username,code) // Pass username and verification code to confirmSignUp function
       .then(() => {
         setSuccessMessage('Verification successful. You can now login.');
-        useNavigate('/');
+        Navigate('/');
       })
       .catch((err) => {
         setError(err.message);

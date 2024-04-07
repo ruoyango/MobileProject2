@@ -56,7 +56,7 @@ const Login = () => {
           authenticate(emailOrUsername, password)
             .then((data) => {
               setLoginErr('');
-              Navigate('/addpost');
+              Navigate('/home');
             })
             .catch((err) => {
               console.log(err);
