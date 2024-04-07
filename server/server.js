@@ -83,8 +83,8 @@ app.post('/insert/bookmark/add/',(req,res)=>{
 	var query ="SELECT * FROM bookmarks ORDER BY bookmarkID DESC LIMIT 1;";
 	con.query(query, function (err, results) {
 		if (err) throw err;
-		console.log(results);
-		if (results.data.length > 0) {
+		console.log(results.length);
+		if (results.length > 0) {
 			currentBookmarkNo = results.data[0].bookmarkID + 1;
 		}
 		
