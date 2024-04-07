@@ -6,8 +6,11 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { NavBarData } from './NavBarData';
 import { IconContext } from 'react-icons';
+import Modal from "./Home/Modal"
+
 function NavBar() {
     const [sidebar, setSidebar] =useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
     const showSidebar =()=> setSidebar(!sidebar);
     return (
     
@@ -26,17 +29,27 @@ function NavBar() {
                           <AiIcons.AiOutlineClose/>
                         </Link>
                     </li>
-                    {NavBarData.map((item,index) => {return (
-                        <li key={index} className={item.cName}>
-                          <Link to={item.path}>
-                            {item.icon}
-                            <span>{item.title}</span>
-                          </Link>
-                        </li>
-                    )})}
-                </ul>
-            </nav>
+                    {NavBarData.map((item, index) => {
+                            return (
+                                <li key={index} className={item.cName}>
+                                    {item.title === 'Logout' ? (
+                                        <div className={item.cName} onClick={() => setModalOpen(true)}>
+                                            {item.icon}
+                                            <span>{item.title}</span>
+                                        </div>
+                                    ) : (
+                                        <Link to={item.path}>
+                                            {item.icon}
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    )}
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </nav>
             </IconContext.Provider>
+            {modalOpen && <Modal setOpenModal={setModalOpen} />}
         </>
     )
 }
