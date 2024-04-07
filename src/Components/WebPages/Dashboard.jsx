@@ -1,5 +1,5 @@
 /*
-Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Authors: Go Ruo Yan
 Date: 1 April 2024
 Summary: Dashboard.jsx fetches and displays the user's posts from the database, including captions, descriptions, and usernames.
 */
@@ -8,8 +8,6 @@ import "./style.css"
 import NavBar from "../NavBar"
 // import Sidebar from"../NavBar2"
 import * as CiIcons from 'react-icons/ci'
-import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2"
-import {Link} from "react-router-dom";
 import axios from 'axios';
 import { getCurrentUsername }  from '../Services/Authentication.js';
 
@@ -92,7 +90,7 @@ const Dashboard = ({pageTitle}) => {
     function addBookmark(index) {
         console.log("bookmark!");
         
-        axios.post(process.env.REACT_APP_DATABASE_URL + '/insert/bookmark/add/', {
+        axios.post(process.env.REACT_APP_DATABASE_URL + '/insert/bookmark/', {
             postID: postIDs[index].name,
             userID: getCurrentUsername(),
         })
@@ -196,7 +194,6 @@ const Dashboard = ({pageTitle}) => {
                         <div className='belowness'>
                             <div id="icons">
                                 <CiIcons.CiHeart size={70} style={{padding:'5px'}} />
-                                <HiOutlineChatBubbleOvalLeft size={70} style={{padding:'5px'}}/>
                             </div>
 
                             { bookmarkedPostIDs.find(e => e.name === postIDs[index].name) ? (

@@ -1,35 +1,178 @@
 /*
-Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Authors: Go Ruo Yan
 Date: 1 April 2024
 Summary: SavedPage.jsx displays a saved post with user information and interaction icons.
 */
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import "./style.css"
 import NavBar from '../NavBar'
 import * as CiIcons from 'react-icons/ci'
 import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2"
 // import { Link } from "react-router-dom";
 import test from '../Assets/7ad47d8666404417a572428d9ce78a82.png'
+import axios from 'axios';
+import { getCurrentUsername }  from '../Services/Authentication.js';
 
 
 const SavedPage = ({ pageTitle }) => {
 
-  return (
+  const [descriptions, setDescriptions] = useState([]);
+  const [captions, setCaptions] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [postIDs, setPostIDs] = useState([]);
+  const [bookmarkedPostIDs, setBookmarkedPostIDs] = useState([]);
+  const [bookmarkIDs, setBookmarkIDs] = useState([]);
 
-    <div>
-      <NavBar pageTitle="Save" />
-      <div className='postNo'>
-        <img src={test} alt="test" />
-        <div className='belowness2'>
-          <p>@AccountName</p>
-          <div id="icons">
-            <CiIcons.CiHeart size={50} style={{ padding: '5px' }} />
-            <HiOutlineChatBubbleOvalLeft size={50} style={{ padding: '5px' }} />
+  useEffect(() => {
+      axios.get(process.env.REACT_APP_DATABASE_URL + '/query/posts/')
+      .then((result) => {
+          setCaptions([]);
+          setDescriptions([]);
+          setUsers([]);
+          setPostIDs([]);
+          
+          for (let i = 0; i < result.data.length; ++i) {
+              setCaptions((prevCaptions) => [
+                  ...prevCaptions,
+                  {
+                      name: result.data[i].caption
+                  },
+              ])
+              setDescriptions((prevDescriptions) => [
+                  ...prevDescriptions,
+                  {
+                      name: result.data[i].description
+                  },
+              ])
+              setUsers((prevUsers) => [
+                  ...prevUsers,
+                  {
+                      name: result.data[i].userID
+                  },
+              ])
+              setPostIDs((prevPostIDs) => [
+                  ...prevPostIDs,
+                  {
+                      name: result.data[i].postID
+                  },
+              ])
+          }
+      })
+      .catch((e) => {
+          console.log(e);
+      })
+
+      axios.get(process.env.REACT_APP_DATABASE_URL + '/query/bookmarks/')
+      .then((otherResult) => {
+
+          setBookmarkedPostIDs([]);
+          
+          for (let i = 0; i < otherResult.data.length; ++i) {
+              if (otherResult.data[i].userID === getCurrentUsername()) {
+                  setBookmarkedPostIDs((prevBookmarkedPostIDs) => [
+                      ...prevBookmarkedPostIDs,
+                      {
+                          name: otherResult.data[i].postID
+                      },
+                  ])
+                  setBookmarkIDs((prevBookmarkIDs) => [
+                      ...prevBookmarkIDs,
+                      {
+                          name: otherResult.data[i].bookmarkID
+                      },
+                  ])
+              }
+          }
+          console.log(bookmarkedPostIDs);
+      })
+      .catch((e) => {
+          console.log(e);
+      })
+  }, [])
+
+  function removeBookmark(index) {
+      console.log("remove!");
+
+      let bookmarkIndex = bookmarkedPostIDs.findIndex(e => e.name === postIDs[index].name);
+      console.log(bookmarkIndex);
+
+      axios.post(process.env.REACT_APP_DATABASE_URL + '/remove/bookmark/', {
+          bookmarkID: bookmarkIDs[bookmarkIndex].name,
+      })
+      .then((result) => {
+          console.log(result);
+          axios.get(process.env.REACT_APP_DATABASE_URL + '/query/bookmarks/')
+          .then((otherResult) => {
+
+              setBookmarkedPostIDs([]);
+              setBookmarkIDs([]);
+              
+              for (let i = 0; i < otherResult.data.length; ++i) {
+                  if (otherResult.data[i].userID === getCurrentUsername()) {
+                      setBookmarkedPostIDs((prevBookmarkedPostIDs) => [
+                          ...prevBookmarkedPostIDs,
+                          {
+                              name: otherResult.data[i].postID
+                          },
+                      ])
+                      setBookmarkIDs((prevBookmarkIDs) => [
+                          ...prevBookmarkIDs,
+                          {
+                              name: otherResult.data[i].bookmarkID
+                          },
+                      ])
+                  }
+              }
+              console.log(bookmarkedPostIDs);
+          })
+          .catch((e) => {
+              console.log(e);
+          })
+      })
+      .catch((e) => {
+          console.log(e);
+      })
+  }
+  
+  return (
+      <>
+          <NavBar pageTitle="Dashboard" />
+          <div className='dashboard'>
+
+              {captions?.map((caption, index) => (
+                  <>
+                  { bookmarkedPostIDs.find(e => e.name === postIDs[index].name) ? (
+                    <div className='dashpost' key={index}>
+
+                        <h3>@{users[index].name}</h3>
+                        
+                        <div className='captionDiv'>
+                            <p className="caption">{caption.name}</p>
+                        </div>
+                        
+                        <div className='descriptionDiv'>
+                            <p className="description">{descriptions[index].name}</p>
+                        </div>
+                        
+                        <div className='belowness'>
+                            <div id="icons">
+                                <CiIcons.CiHeart size={70} style={{padding:'5px'}} />
+                            </div>
+                                <CiIcons.CiBookmark size={70} style={{padding:'5px'}} className='bookmarkIconAdded' onClick={() => removeBookmark(index)}/>
+
+                        </div>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  </>
+              ))}
+
           </div>
 
-        </div>
-      </div>
-    </div>
+      </>
+
+
   )
 }
 

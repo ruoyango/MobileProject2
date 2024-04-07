@@ -1,3 +1,8 @@
+/*
+Authors: Go Ruo Yan
+Date: 1 April 2024
+Summary: Node server to run the database from the EC2 instance.
+*/
 const express= require('express');
 const bodyParser=require('body-parser');
 const cors=require('cors');
@@ -49,7 +54,7 @@ app.post('/insert/posts/',(req,res)=>{
 		}
 		
 		// inserting the value
-		var records = [[currentPostNo, req.body.userID, req.body.description, req.body.caption]];
+		var records = [[currentPostNo, req.body.userID, req.body.description, req.body.caption, 0]];
 		var sql = "INSERT INTO posts VALUES ?";
 
 		con.query(sql,[records],function(err, result) {
@@ -80,14 +85,14 @@ app.get('/query/bookmarks/',(req,res)=>{
 	});
 })
 
-app.post('/insert/bookmark/add/',(req,res)=>{
+app.post('/insert/bookmark/',(req,res)=>{
 	// getting primary key
 	let currentBookmarkNo = 0;
 
 	var query ="SELECT * FROM bookmarks ORDER BY bookmarkID DESC LIMIT 1;";
 	con.query(query, function (err, results) {
 		if (err) throw err;
-		
+
 		if (results.length > 0) {
 			
 			currentBookmarkNo = results[0].bookmarkID + 1;
@@ -111,6 +116,42 @@ app.post('/remove/bookmark/',(req,res)=>{
 	var sql = "DELETE FROM bookmarks WHERE bookmarkID = ?";
 
 	con.query(sql,[records],function(err, result) {
+		if (err) throw err;
+		res.json(result);
+		console.log("Number of records removed: " + result.affectedRows);
+	});
+})
+
+app.post('/insert/likes/',(req,res)=>{
+	// getting primary key
+	let currentLikeNo = 0;
+
+	var query ="SELECT * FROM likes ORDER BY likeID DESC LIMIT 1;";
+	con.query(query, function (err, results) {
+		if (err) throw err;
+
+		if (results.length > 0) {
+			currentLikeNo = results[0].likeID + 1;
+		}
+		
+		// inserting the value
+		var records = [[currentLikeNo, req.body.postID, req.body.userID]];
+		var sql = "INSERT INTO likes VALUES ?";
+
+		con.query(sql,[records],function(err, result) {
+			if (err) throw err;
+			res.json(result);
+			console.log("Number of records inserted: " + result.affectedRows);
+		});
+	});
+})
+
+app.post('/increment/posts/likeCount/',(req,res)=>{
+	// removing based on bookmarkID
+	var postID = [req.body.postID];
+	var sql = "UPDATE posts SET likeCount = likeCount + 1 WHERE postID = ?";
+
+	con.query(sql,[postID],function(err, result) {
 		if (err) throw err;
 		res.json(result);
 		console.log("Number of records removed: " + result.affectedRows);

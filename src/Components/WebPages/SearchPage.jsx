@@ -1,5 +1,5 @@
 /*
-Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Authors: Go Ruo Yan
 Date: 1 April 2024
 Summary: SearchPage.jsx allows users to search for posts by username and displays the matching posts.
 */
@@ -8,16 +8,20 @@ import "./style.css"
 import NavBar from '../NavBar'
 import { IoSearchOutline } from "react-icons/io5";
 import * as CiIcons from 'react-icons/ci'
-import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2"
-import {Link} from "react-router-dom";
 import axios from 'axios';
+import { getCurrentUsername }  from '../Services/Authentication.js';
 
 const SearchPage = ({ pageTitle }) => {
 
   const [descriptions, setDescriptions] = useState([]);
   const [captions, setCaptions] = useState([]);
   const [usernames, setUsernames] = useState([]);
+  const [postIDs, setPostIDs] = useState([]);
+  const [likeCount, setLikeCount] = useState([]);
+  const [bookmarkedPostIDs, setBookmarkedPostIDs] = useState([]);
+  const [bookmarkIDs, setBookmarkIDs] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [likedIDs, setLikedIDs] = useState([]);
 
   useEffect(() => {
     console.log(searchText);
@@ -26,39 +30,214 @@ const SearchPage = ({ pageTitle }) => {
       search: searchText
     })
     .then((result) => {
-        setCaptions([]);
-        setDescriptions([]);
-        setUsernames([]);
+      setPostIDs([]);
+      setUsernames([]);
+      setCaptions([]);
+      setDescriptions([]);
+      setLikeCount([]);
       
-        for (let i = 0; i < result.data.length; ++i) {
-            setCaptions((prevCaptions) => [
-                ...prevCaptions,
-                {
-                    name: result.data[i].caption
-                },
-            ])
-            setDescriptions((prevDescriptions) => [
-                ...prevDescriptions,
-                {
-                    name: result.data[i].description
-                },
-            ])
-            setUsernames((prevUsernames) => [
-                ...prevUsernames,
-                {
-                    name: result.data[i].userID
-                },
-            ])
-
-        }
+      for (let i = 0; i < result.data.length; ++i) {
+          setCaptions((prevCaptions) => [
+              ...prevCaptions,
+              {
+                  name: result.data[i].caption
+              },
+          ])
+          setDescriptions((prevDescriptions) => [
+              ...prevDescriptions,
+              {
+                  name: result.data[i].description
+              },
+          ])
+          setUsernames((prevUsernames) => [
+              ...prevUsernames,
+              {
+                  name: result.data[i].userID
+              },
+          ])
+          setPostIDs((prevPostIDs) => [
+              ...prevPostIDs,
+              {
+                  name: result.data[i].postID
+              },
+          ])
+          setLikeCount((prevLikeCounts) => [
+              ...prevLikeCounts,
+              {
+                  name: result.data[i].likeCount
+              },
+          ])
+      }
     })
     .catch((e) => {
         console.log(e);
     })
   }, [searchText])
+  
+  useEffect(() => {
+    axios.get(process.env.REACT_APP_DATABASE_URL + '/query/bookmarks/')
+    .then((otherResult) => {
+
+        setBookmarkedPostIDs([]);
+        
+        for (let i = 0; i < otherResult.data.length; ++i) {
+            if (otherResult.data[i].userID === getCurrentUsername()) {
+                setBookmarkedPostIDs((prevBookmarkedPostIDs) => [
+                    ...prevBookmarkedPostIDs,
+                    {
+                        name: otherResult.data[i].postID
+                    },
+                ])
+                setBookmarkIDs((prevBookmarkIDs) => [
+                    ...prevBookmarkIDs,
+                    {
+                        name: otherResult.data[i].bookmarkID
+                    },
+                ])
+            }
+        }
+        console.log(bookmarkedPostIDs);
+    })
+    .catch((e) => {
+        console.log(e);
+    })
+  }, [])
 
   function handleSearch(event) {
     setSearchText(event.target.value);
+  }
+
+  function addBookmark(index) {
+    console.log("bookmark!");
+    
+    axios.post(process.env.REACT_APP_DATABASE_URL + '/insert/bookmark/', {
+        postID: postIDs[index].name,
+        userID: getCurrentUsername(),
+    })
+    .then((result) => {
+        axios.get(process.env.REACT_APP_DATABASE_URL + '/query/bookmarks/')
+        .then((otherResult) => {
+
+            setBookmarkedPostIDs([]);
+            setBookmarkIDs([]);
+            
+            for (let i = 0; i < otherResult.data.length; ++i) {
+                if (otherResult.data[i].userID === getCurrentUsername()) {
+                    setBookmarkedPostIDs((prevBookmarkedPostIDs) => [
+                        ...prevBookmarkedPostIDs,
+                        {
+                            name: otherResult.data[i].postID
+                        },
+                    ])
+                    setBookmarkIDs((prevBookmarkIDs) => [
+                        ...prevBookmarkIDs,
+                        {
+                            name: otherResult.data[i].bookmarkID
+                        },
+                    ])
+                }
+            }
+            console.log(bookmarkedPostIDs);
+        })
+        .catch((e) => {
+            console.log(e);
+        })
+    })
+    .catch((e) => {
+        console.log(e);
+    })
+  }
+
+  function removeBookmark(index) {
+      console.log("remove!");
+
+      let bookmarkIndex = bookmarkedPostIDs.findIndex(e => e.name === postIDs[index].name);
+      console.log(bookmarkIndex);
+
+      axios.post(process.env.REACT_APP_DATABASE_URL + '/remove/bookmark/', {
+          bookmarkID: bookmarkIDs[bookmarkIndex].name,
+      })
+      .then((result) => {
+          console.log(result);
+          axios.get(process.env.REACT_APP_DATABASE_URL + '/query/bookmarks/')
+          .then((otherResult) => {
+
+              setBookmarkedPostIDs([]);
+              setBookmarkIDs([]);
+              
+              for (let i = 0; i < otherResult.data.length; ++i) {
+                  if (otherResult.data[i].userID === getCurrentUsername()) {
+                      setBookmarkedPostIDs((prevBookmarkedPostIDs) => [
+                          ...prevBookmarkedPostIDs,
+                          {
+                              name: otherResult.data[i].postID
+                          },
+                      ])
+                      setBookmarkIDs((prevBookmarkIDs) => [
+                          ...prevBookmarkIDs,
+                          {
+                              name: otherResult.data[i].bookmarkID
+                          },
+                      ])
+                  }
+              }
+              console.log(bookmarkedPostIDs);
+          })
+          .catch((e) => {
+              console.log(e);
+          })
+      })
+      .catch((e) => {
+          console.log(e);
+      })
+  }
+
+  function addLike(index) {
+    
+    axios.post(process.env.REACT_APP_DATABASE_URL + '/insert/likes/', {
+      postID: postIDs[index].name,
+      userID: getCurrentUsername(),
+    })
+    .then((result) => {
+      setLikedIDs([]);
+      
+      for (let i = 0; i < result.data.length; ++i) {
+        if (result.data[i].userID === getCurrentUsername()) {
+          setLikedIDs((prevLikedIDs) => [
+              ...prevLikedIDs,
+              {
+                  name: result.data[i].likeID
+              },
+          ])
+        }
+      }
+    })
+    .catch((e) => {
+        console.log(e);
+    })
+    
+    axios.post(process.env.REACT_APP_DATABASE_URL + '/increment/posts/likeCount/', {
+      postID: postIDs[index].name
+    })
+    .then((result) => {
+      setLikeCount([]);
+      
+      for (let i = 0; i < result.data.length; ++i) {
+        setLikeCount((prevLikeCounts) => [
+          ...prevLikeCounts,
+          {
+              name: result.data[i].likeCount
+          },
+        ])
+      }
+    })
+    .catch((e) => {
+        console.log(e);
+    })
+  }
+
+  function removeLike(index) {
+
   }
 
   return (
@@ -88,11 +267,19 @@ const SearchPage = ({ pageTitle }) => {
                 </div>
                 
                 <div className='belowness'>
-                    <div id="icons">
-                        <CiIcons.CiHeart size={70} style={{padding:'5px'}} />
-                        <HiOutlineChatBubbleOvalLeft size={70} style={{padding:'5px'}}/>
+                    <div id="icons" className='icons'>
+                        { likedIDs.find(e => e.name === postIDs[index].name) ? (
+                          <CiIcons.CiHeart size={70} style={{padding:'5px'}} className='bookmarkIconAdded' onClick={() => removeLike(index)}/>
+                        ) : (
+                          <CiIcons.CiHeart size={70} style={{padding:'5px'}} className='bookmarkIcon' onClick={() => addLike(index)}/>
+                        )}
+                        <p>1 likes</p>
                     </div>
-                    <CiIcons.CiBookmark size={70} style={{padding:'5px'}}/>
+                    { bookmarkedPostIDs.find(e => e.name === postIDs[index].name) ? (
+                        <CiIcons.CiBookmark size={70} style={{padding:'5px'}} className='bookmarkIconAdded' onClick={() => removeBookmark(index)}/>
+                    ) : (
+                        <CiIcons.CiBookmark size={70} style={{padding:'5px'}} className='bookmarkIcon' onClick={() => addBookmark(index)}/>
+                    )}
                 </div>
             </div>
             </>
