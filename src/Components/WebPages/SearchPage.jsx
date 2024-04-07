@@ -273,7 +273,8 @@ const SearchPage = ({ pageTitle }) => {
 
   function removeLike(index) {
     
-    let likeIndex = likedPostIDs.findIndex(e => e.name === postIDs[index].name);
+    let likeIndex = likedPostIDs.findIndex(e => e.name === likedPostIDs[index].name);
+    console.log(likeIndex)
 
     axios.post(process.env.REACT_APP_DATABASE_URL + '/remove/likes/', {
       likeID: likeIDs[likeIndex].name

@@ -125,7 +125,7 @@ app.post('/remove/bookmark/',(req,res)=>{
 app.post('/remove/likes/',(req,res)=>{
 	// find based on userID
 	let likeID = [req.body.likeID];
-	var sql = "SELECT FROM likes WHERE likeID = ?";
+	var sql = "DELETE FROM likes WHERE likeID = ?";
 
 	con.query(sql, [likeID], function(err, result) {
 		if (err) throw err;
