@@ -122,6 +122,23 @@ app.post('/remove/bookmark/',(req,res)=>{
 	});
 })
 
+app.post('/remove/likes/',(req,res)=>{
+	// removing based on bookmarkID
+	var records = [req.body.postID, req.body.userID];
+	var sql = "DELETE FROM likes WHERE postID = ? AND userID = ?";
+
+	con.query(sql,[records],function(err, result) {
+		if (err) throw err;
+		console.log("Number of records removed for likes: " + result.affectedRows);
+
+		var newsql = "SELECT * FROM likes";
+		con.query(newsql,function(err, newresult) {
+			if (err) throw err;
+			res.json(newresult);
+		});
+	});
+})
+
 app.post('/insert/likes/',(req,res)=>{
 	// getting primary key
 	let currentLikeNo = 0;
@@ -168,6 +185,23 @@ app.post('/increment/posts/likeCount/',(req,res)=>{
 	con.query(sql,[postID],function(err, result) {
 		if (err) throw err;
 		console.log("Number of records incremented: " + result.affectedRows);
+		
+		var newsql = "SELECT posts.likeCount FROM posts";
+		con.query(newsql,function(err, newresult) {
+			if (err) throw err;
+			res.json(newresult);
+		});
+	});
+})
+
+app.post('/decrement/posts/likeCount/',(req,res)=>{
+	// incrementing based on likeID
+	var postID = [req.body.postID];
+	var sql = "UPDATE posts SET likeCount = likeCount - 1 WHERE postID = ?";
+
+	con.query(sql,[postID],function(err, result) {
+		if (err) throw err;
+		console.log("Number of records decremented: " + result.affectedRows);
 		
 		var newsql = "SELECT posts.likeCount FROM posts";
 		con.query(newsql,function(err, newresult) {

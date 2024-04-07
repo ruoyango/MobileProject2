@@ -258,6 +258,48 @@ const SearchPage = ({ pageTitle }) => {
 
   function removeLike(index) {
 
+    axios.post(process.env.REACT_APP_DATABASE_URL + '/remove/likes/', {
+      postID: postIDs[index].name,
+      userID: getCurrentUsername(),
+    })
+    .then((result) => {
+      console.log(result.data);
+      setLikedPostIDs([]);
+      
+      for (let i = 0; i < result.data.length; ++i) {
+        if (result.data[i].userID === getCurrentUsername()) {
+          setLikedPostIDs((prevLikedPostIDs) => [
+              ...prevLikedPostIDs,
+              {
+                  name: result.data[i].postID
+              },
+          ])
+        }
+      }
+      console.log(likedPostIDs);
+    })
+    .catch((e) => {
+        console.log(e);
+    })
+    
+    axios.post(process.env.REACT_APP_DATABASE_URL + '/decrement/posts/likeCount/', {
+      postID: postIDs[index].name
+    })
+    .then((result) => {
+      setLikeCount([]);
+      
+      for (let i = 0; i < result.data.length; ++i) {
+        setLikeCount((prevLikeCounts) => [
+          ...prevLikeCounts,
+          {
+            name: result.data[i].likeCount
+          },
+        ])
+      }
+    })
+    .catch((e) => {
+        console.log(e);
+    })
   }
 
   return (
