@@ -11,6 +11,7 @@ const Dashboard = () => {
 
     const [descriptions, setDescriptions] = useState([]);
     const [captions, setCaptions] = useState([]);
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         axios.get('http://54.198.89.107:3001/')
@@ -18,6 +19,7 @@ const Dashboard = () => {
             console.log(result);
             console.log(result.data[0].caption);
             console.log(result.data[0].description);
+            console.log(result.data[0].userID)
 
             for (let i = 0; i < result.data.length; ++i) {
                 setCaptions((prevCaptions) => [
@@ -30,6 +32,12 @@ const Dashboard = () => {
                     ...prevDescriptions,
                     {
                         name: result.data[i].description
+                    },
+                ])
+                setUsers((prevUsers) => [
+                    ...prevUsers,
+                    {
+                        name: result.data[i].userID
                     },
                 ])
 
@@ -64,7 +72,7 @@ const Dashboard = () => {
                     <>
                     <div className='dashpost' key={index}>
 
-                        <h3>@Account name</h3>
+                        <h3>@{users[index].name}</h3>
                         
                         <div className='captionDiv'>
                             <p className="caption">{caption.name}</p>
