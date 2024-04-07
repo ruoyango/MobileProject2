@@ -1,5 +1,5 @@
 /*
-Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Authors: Lim Hui Ching, Elton Teo, Nicole Wong
 Date: 1 April 2024
 Summary: NavBar2.jsx creates a responsive navigation bar with a collapsible sidebar using the 
 react-pro-sidebar library, allowing users to navigate through different pages of the application.

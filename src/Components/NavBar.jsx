@@ -1,5 +1,5 @@
 /*
-Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Authors: Lim Hui Ching, Elton Teo, Nicole Wong
 Date: 1 April 2024
 Summary: NavBar.jsx implements a responsive navigation bar with a sidebar menu 
 that can be toggled open and closed, and a logout functionality that opens a modal dialog.

@@ -6,7 +6,6 @@ Summary: Dashboard.jsx fetches and displays the user's posts from the database, 
 import React, { useState, useEffect } from 'react'
 import "./style.css"
 import NavBar from "../NavBar"
-// import Sidebar from"../NavBar2"
 import * as CiIcons from 'react-icons/ci'
 import axios from 'axios';
 import { getCurrentUsername }  from '../Services/Authentication.js';

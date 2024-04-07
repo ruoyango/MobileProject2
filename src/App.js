@@ -23,18 +23,6 @@ function App() {
   const [pageTitle, setPageTitle] = useState('Dashboard');
   return (
     <div>
-      
-       {/* <BrowserRouter>
-       <Routes>
-        <Route index element ={<Login/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/signup" element={<Signup/>}/>
-        <Route path="/home" element={<Dashboard/>}/>
-        <Route path="/search" element={<SearchPage/>}/>
-        <Route path="/saved" element={<SavedPage/>}/>
-       </Routes>
-       </BrowserRouter> */}
-
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route path="/signup" element={<LoginSignup />} />

@@ -12,7 +12,6 @@ import { Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { authenticate } from '../Services/Authentication';
 import './Login.css'
-import userpool from '../../userpool';
 
 const Login = () => {
   const Navigate = useNavigate();

@@ -1,5 +1,5 @@
 /*
-Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Authors: Elton Teo
 Date: 1 April 2024
 Summary: Authentication.js provides functions for user authentication, including 
 login, forgot password, reset password, and sign-up confirmation.

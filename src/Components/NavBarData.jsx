@@ -1,5 +1,5 @@
 /*
-Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Authors: Lim Hui Ching, Elton Teo, Nicole Wong
 Date: 1 April 2024
 Summary: NavBarData.jsx defines the data for the navigation bar, 
 including the page titles, paths, and corresponding icons.
@@ -7,7 +7,6 @@ including the page titles, paths, and corresponding icons.
 import React from 'react'
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-// import * as IoIcons from "react-icons/io";
 import { MdOutlineAddBox } from "react-icons/md";
 import { MdLogout } from "react-icons/md";
 

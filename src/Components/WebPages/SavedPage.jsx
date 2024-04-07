@@ -8,7 +8,6 @@ import "./style.css"
 import NavBar from '../NavBar'
 import * as CiIcons from 'react-icons/ci'
 import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2"
-// import { Link } from "react-router-dom";
 import test from '../Assets/7ad47d8666404417a572428d9ce78a82.png'
 import axios from 'axios';
 import { getCurrentUsername }  from '../Services/Authentication.js';
