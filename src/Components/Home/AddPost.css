@@ -1,178 +1,25 @@
 .card {
-    padding: 10px;
     overflow: hidden;
     display: grid;
     justify-content: center;
     align-items: center;
 }
-.card .dragArea {
+.card .description textarea {
     height: 300px;
-    width: 500px;
+    width: 100%;
+    max-width: 100%;
     border-radius: 5px;
     box-shadow: 1px 1px 10px 1px gray;
-    color: #0086fe;
     background: #f4f3f9;
     display: grid;
     justify-content: center;
     align-items: center;
     user-select: none;
-    -webkit-user-select: none;
-    margin-top: 10px;
+    margin-top: 20px;
+    padding: 10px;
 }
 
-.card .dragAreaText {
-    color: #0086fe;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-    -webkit-user-select: none;
-    margin-top: 10px;
-}
-.card .dragAreaText .visible {
-    font-size: 18px;
-}
-.card .dragAreaText .select { /* "Browse" and "Drop image here" css */
-    color: #5256ad;
-    margin-left: 5px;
-    cursor: pointer;
-    transition: 0.4s;
-}
-.card .dragAreaText .select:hover { /* When user hovers over "Browse" */
-    opacity: 0.6;
-}
-
-.card .dragArea .containerView {
-    height: 90%;
-    padding: 5px;
-    color: #0086fe;
-    box-shadow: none;
-    border: none;
-}
-
-.card .dragArea .containerView .video {
-    height: 99%;
-    position: relative;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-}
-.card .dragArea .containerView .video .videoView{
-    display: grid;
-}
-.card .dragArea .containerView .video .videoView video {
-    width: 90%;
-    max-height: 250px;
-    border-radius: 5px;
-    align-self: center;
-    justify-self: center;
-}
-.card .dragArea .containerView .video .videoView .rh5v-Overlay_component  {
-    position: absolute;
-    justify-self: center;
-    align-self: center;
-}
-.card .dragArea .containerView .video .videoView .rh5v-DefaultPlayer_controls  {
-    display: flex;
-    justify-self: center;
-    align-self: center;
-}
-.card .dragArea .containerView .image {
-    height: 99%;
-    position: relative;
-    margin-bottom: 8px;
-}
-.card .dragArea .containerView .image img{
+.inputs input {
     width: 100%;
-    height: 100%;
-    border-radius: 5px;
-}
-.card .dragArea .containerView .video .next,
-.card .dragArea .containerView .image:hover .next{ /* For > */
-    display: block;
-    position: absolute;
-    top: 33%;
-    right: 0%;
-    font-size: 80px;
-    transform: scale(.5, 1);
-}
-
-.card .dragArea .containerView .image .next{ 
-    display: none;
-}
-.card .dragArea .containerView .video .previous,
-.card .dragArea .containerView .image:hover .previous{ /* For > */
-    display: block;
-    position: absolute;
-    top: 33%;
-    left: 0%;
-    font-size: 80px;
-    transform: scale(.5, 1);
-}
-
-.card .dragArea .containerView .image .previous{ 
-    display: none;
-}
-
-.card .container {
-    width: 99%;
-    height: auto;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    max-height: 100px;
-    max-width: 500px;
-    overflow-y: auto;
-    margin-top: 10px;
-    color: #0086fe;
-    border: dashed;
-    box-shadow: none;
-}
-.card .container .video,
-.card .container .image {
-    width: 75px;
-    margin: 5px;
-    height: 75px;
-    position: relative;
-    margin-bottom: 8px;
-}
-.card .container .video video,
-.card .container .image img{
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-}
-.card .container .image span{ /* For the X */
-    position: absolute;
-    top: -2px;
-    right: 9px;
-    font-size: 20px;
-}
-.card .dragAreaText input,
-.card .dragAreaText .on-drop,
-.card .dragAreaText.dragover .visible {
-    display: none;
-}
-.delete {
-    z-index: 999;
-    color: #0086fe;
-    cursor: pointer;
-}
-.next {
-    z-index: 999;
-    color: #b2b2b2;
-    cursor: pointer;
-}
-.previous {
-    z-index: 999;
-    color: #b2b2b2;
-    cursor: pointer;
-}
-
-.input {
-    padding: 5px;
-}
-
-.openModalBtn{
-    cursor: pointer;
+    padding: 10px;
 }

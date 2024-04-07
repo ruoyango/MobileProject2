@@ -24,6 +24,7 @@ con.connect(function(err) {
  console.log('connection successful');
 });
 
+// for testing
 app.get('/',(req,res)=>{
   res.json('OK');
 })
@@ -40,8 +41,26 @@ app.post('/',(req,res)=>{
 	// 	});
 	// }
 	// res.json('Form recieved');
+	// getting primary key
+	let currentPostNo = 0;
+
+	var query ="SELECT * FROM posts;";
+	con.query(query, function (err, results) {
+		if (err) throw err;
+		console.log(results);
+		currentPostNo = results.length;
+		console.log(currentPostNo);
+	 });
+
+	// var records = [[currentPostNo, req.body.userID, req.body.description, req.body.caption]];
+	// var sql = "INSERT INTO posts VALUES ?";
+
+	// con.query(sql,[records],function(err, result) {
+	// 	if (err) throw err;
+	// 	console.log("Number of records inserted: " + result.affectedRows);
+	// });
+
 	console.log(req.body);
-	res.send("This works!");
 })
 
 app.listen(3001,()=>{

@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { DefaultPlayer as Video } from 'react-html5video'
+import React, { useState, useRef } from 'react'
 import './AddPost.css'
 import Modal from "./Modal.js";
 import logo from '../../logo.svg'
@@ -42,97 +41,95 @@ const AddPost = () => {
     
     // }, []);
 
-    const [data, setData] = useState('');
-        
-    useEffect(() => {
-        axios.get('http://54.198.89.107:3001/')
-        .then(response => {
-            setData(response.data.message);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    }, []);
-
     const [modalOpen, setModalOpen] = useState(false);
-    const [images, setImages] = useState([]);
-    const [isDragging, setIsDragging] = useState(false);
-    const [filesAdded, setFilesAdded] = useState(false);
-    const [currImageIndex, setCurrImageIndex] = useState();
-    const fileInputRef = useRef(null);
+    // const [images, setImages] = useState([]);
+    // const [isDragging, setIsDragging] = useState(false);
+    // const [filesAdded, setFilesAdded] = useState(false);
+    // const [currImageIndex, setCurrImageIndex] = useState();
+    // const fileInputRef = useRef(null);
 
-    function addingFilesIntoArray(files) {
-        for (let i = 0; i < files.length; ++i) {
-            if (files[i].type.split("/")[0] !== 'image' && files[i].type.split("/")[0] !== 'video') continue;
-            if (!images?.some((e) => e.name === files[i].name)) {
-                setImages((prevImages) => [
-                    ...prevImages,
-                    {
-                        name: files[i].name,
-                        url: URL.createObjectURL(files[i]),
-                        type: files[i].type.split("/")[0],
-                    },
-                ])
+    const [description, setDescription] = useState("");
+    const [caption, setCaption] = useState("");
 
-                setFilesAdded(true);
-                ++totalImages;
-            }
-        }
+    // function addingFilesIntoArray(files) {
+    //     for (let i = 0; i < files.length; ++i) {
+    //         if (files[i].type.split("/")[0] !== 'image' && files[i].type.split("/")[0] !== 'video') continue;
+    //         if (!images?.some((e) => e.name === files[i].name)) {
+    //             setImages((prevImages) => [
+    //                 ...prevImages,
+    //                 {
+    //                     name: files[i].name,
+    //                     url: URL.createObjectURL(files[i]),
+    //                     type: files[i].type.split("/")[0],
+    //                 },
+    //             ])
+
+    //             setFilesAdded(true);
+    //             ++totalImages;
+    //         }
+    //     }
+    // }
+
+    // function selectFiles() {
+    //     fileInputRef.current.click();
+    // }
+    // function onFilesSelect(event) {
+    //     const files = event.target.files;
+    //     if (files.length === 0) return;
+    //     addingFilesIntoArray(files);
+    //     setCurrImageIndex(0);
+    // }
+    // function deleteImage(index) {
+    //     setImages((prevImages) =>
+    //         prevImages.filter((_, i) => i !== index)
+    //     );
+    //     if (images.length === 1) {
+    //         setFilesAdded(false);
+    //     }
+    //     totalImages = images.length - 1;
+    //     if (currImageIndex > index || currImageIndex === totalImages) {
+    //         setCurrImageIndex(currImageIndex - 1);
+    //     }
+    // }
+    // function onDragOver(event) {
+    //     event.preventDefault();
+    //     setIsDragging(true);
+    //     event.dataTransfer.dropEffect = "copy";
+    // }
+    // function onDragLeave(event) {
+    //     event.preventDefault();
+    //     setIsDragging(false);
+    // }
+    // function onDrop(event) {
+    //     event.preventDefault();
+    //     setIsDragging(false);
+    //     const files = event.dataTransfer.files;
+    //     addingFilesIntoArray(files);
+    //     setCurrImageIndex(0);
+    // }
+
+    // const nextImage = () => {
+    //     if (currImageIndex !== totalImages - 1) {
+    //         setCurrImageIndex(currImageIndex + 1);
+    //     }
+    //     console.log("currImageIndex: " + currImageIndex);
+    // }
+    // const previousImage = () => {
+    //     if (currImageIndex !== 0) {
+    //         setCurrImageIndex(currImageIndex - 1);
+    //     }
+    //     console.log("currImageIndex: " + currImageIndex);
+    // }
+
+    function updateCaption(event) {
+        setCaption(event.target.value);
     }
 
-    function selectFiles() {
-        fileInputRef.current.click();
+    function updateDescription(event) {
+        setDescription(event.target.value);
     }
-    function onFilesSelect(event) {
-        const files = event.target.files;
-        if (files.length === 0) return;
-        addingFilesIntoArray(files);
-        setCurrImageIndex(0);
-    }
-    function deleteImage(index) {
-        setImages((prevImages) =>
-            prevImages.filter((_, i) => i !== index)
-        );
-        if (images.length === 1) {
-            setFilesAdded(false);
-        }
-        totalImages = images.length - 1;
-        if (currImageIndex > index || currImageIndex === totalImages) {
-            setCurrImageIndex(currImageIndex - 1);
-        }
-    }
-    function onDragOver(event) {
-        event.preventDefault();
-        setIsDragging(true);
-        event.dataTransfer.dropEffect = "copy";
-    }
-    function onDragLeave(event) {
-        event.preventDefault();
-        setIsDragging(false);
-    }
-    function onDrop(event) {
-        event.preventDefault();
-        setIsDragging(false);
-        const files = event.dataTransfer.files;
-        addingFilesIntoArray(files);
-        setCurrImageIndex(0);
-    }
-
-    const nextImage = () => {
-        if (currImageIndex !== totalImages - 1) {
-            setCurrImageIndex(currImageIndex + 1);
-        }
-        console.log("currImageIndex: " + currImageIndex);
-    }
-    const previousImage = () => {
-        if (currImageIndex !== 0) {
-            setCurrImageIndex(currImageIndex - 1);
-        }
-        console.log("currImageIndex: " + currImageIndex);
-    }
-
     
-    const uploadFile = async () => {
+    const uploadText = async () => {
         // const command = new PutObjectCommand({
         //   Bucket: "mobile-project-2-data",
         //   Region: "us-east-1",
@@ -148,7 +145,9 @@ const AddPost = () => {
         console.log("submitted");
     
         axios.post('http://54.198.89.107:3001/', {
-            name: "Testing"
+            description: description,
+            caption: caption,
+            userID: "ruoyan"
         })
         .then((result) => {
             console.log(result);
@@ -172,7 +171,7 @@ const AddPost = () => {
             </div>
 
             <form method="post" action="http://54.198.89.107:3001">
-                <div className="card">
+                {/* <div className="card">
                     <div className="dragArea" onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
                         {filesAdded ? (
                             <div className="containerView">
@@ -239,16 +238,23 @@ const AddPost = () => {
                         <></>
                     )}
 
-                </div>
+                </div> */}
+
 
                 <div className="inputs">
                     <div className="input">
-                        <input type="text" id="caption" placeholder='Add caption here...' />
+                        <input type="text" id="caption" placeholder='Add caption here...' maxLength="100" onChange={updateCaption}/>
+                    </div>
+                </div>
+                
+                <div className="card">
+                    <div className="description">
+                        <textarea type="text" id="description" placeholder='Add post here...' maxLength="1000" onChange={updateDescription}/>
                     </div>
                 </div>
 
                 <div className="submit-container">
-                    <div type="submit" className="submit" onClick={uploadFile}>Post</div>
+                    <div type="submit" className="submit" onClick={uploadText}>Post</div>
                 </div>
             </form>
         </div>
