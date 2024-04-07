@@ -21,10 +21,9 @@ const SearchPage = ({ pageTitle }) => {
   const [bookmarkedPostIDs, setBookmarkedPostIDs] = useState([]);
   const [bookmarkIDs, setBookmarkIDs] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [likedIDs, setLikedIDs] = useState([]);
+  const [likedPostIDs, setLikedPostIDs] = useState([]);
 
   useEffect(() => {
-    console.log(searchText);
  
     axios.post(process.env.REACT_APP_DATABASE_URL + '/query/posts/userID/', {
       search: searchText
@@ -199,18 +198,19 @@ const SearchPage = ({ pageTitle }) => {
       userID: getCurrentUsername(),
     })
     .then((result) => {
-      setLikedIDs([]);
+      setLikedPostIDs([]);
       
       for (let i = 0; i < result.data.length; ++i) {
         if (result.data[i].userID === getCurrentUsername()) {
-          setLikedIDs((prevLikedIDs) => [
-              ...prevLikedIDs,
+          setLikedPostIDs((prevLikedPostIDs) => [
+              ...prevLikedPostIDs,
               {
-                  name: result.data[i].likeID
+                  name: result.data[i].postID
               },
           ])
         }
       }
+      console.log(likedPostIDs);
     })
     .catch((e) => {
         console.log(e);
@@ -220,8 +220,6 @@ const SearchPage = ({ pageTitle }) => {
       postID: postIDs[index].name
     })
     .then((result) => {
-      console.log(result.data);
-
       setLikeCount([]);
       
       for (let i = 0; i < result.data.length; ++i) {
@@ -270,12 +268,12 @@ const SearchPage = ({ pageTitle }) => {
                 
                 <div className='belowness'>
                     <div id="icons" className='icons'>
-                      { likedIDs.find(e => e.name === postIDs[index].name) ? (
+                      { likedPostIDs.find(e => e.name === postIDs[index].name) ? (
                         <CiIcons.CiHeart size={70} style={{padding:'5px'}} className='bookmarkIconAdded' onClick={() => removeLike(index)}/>
                       ) : (
                         <CiIcons.CiHeart size={70} style={{padding:'5px'}} className='bookmarkIcon' onClick={() => addLike(index)}/>
                       )}
-                      <p>1 likes</p>
+                      <p>{likeCount[index].name} likes</p>
                     </div>
                     { bookmarkedPostIDs.find(e => e.name === postIDs[index].name) ? (
                         <CiIcons.CiBookmark size={70} style={{padding:'5px'}} className='bookmarkIconAdded' onClick={() => removeBookmark(index)}/>

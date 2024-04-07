@@ -142,6 +142,12 @@ app.post('/insert/likes/',(req,res)=>{
 			if (err) throw err;
 			res.json(result);
 			console.log("Number of records inserted for likes: " + result.affectedRows);
+
+			var newsql = "SELECT likes.postID FROM likes";
+			con.query(newsql,function(err, newresult) {
+				if (err) throw err;
+				res.json(newresult);
+			});
 		});
 	});
 })
