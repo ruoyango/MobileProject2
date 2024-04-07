@@ -24,7 +24,7 @@ con.connect(function(err) {
  console.log('connection successful');
 });
 
-// for testing
+// get all
 app.get('/',(req,res)=>{
 	var query ="SELECT * FROM posts;";
 	con.query(query, function (err, results) {
@@ -34,18 +34,8 @@ app.get('/',(req,res)=>{
 	});
 })
 
-app.post('/insert/',(req,res)=>{
-	// var records = [[req.body.name,req.body.rollno]];
-	// if(records[0][0]!=null)
-	// {
-	// 	con.query("INSERT INTO posts VALUE (name, rollno)",[records],function(err,res,fields){
-
-	// 		if(err) throw err;
-
-	// 		console.log(res);
-	// 	});
-	// }
-	// res.json('Form recieved');
+// insert into posts table
+app.post('/insert/posts/',(req,res)=>{
 	// getting primary key
 	let currentPostNo = 0;
 
@@ -56,6 +46,7 @@ app.post('/insert/',(req,res)=>{
 		currentPostNo = results.length;
 		console.log(currentPostNo);
 		
+		// inserting the value
 		var records = [[currentPostNo, req.body.userID, req.body.description, req.body.caption]];
 		var sql = "INSERT INTO posts VALUES ?";
 
@@ -64,9 +55,26 @@ app.post('/insert/',(req,res)=>{
 			console.log("Number of records inserted: " + result.affectedRows);
 		});
 	});
+})
 
+app.post('/query/posts/userID/',(req,res)=>{
 
-	//console.log(req.body);
+	var query ="SELECT * FROM posts WHERE posts.userID LIKE ?";
+	con.query(query, [req.body.search], function (err, results) {
+		if (err) throw err;
+		console.log(results);
+		currentPostNo = results.length;
+		console.log(currentPostNo);
+		
+		// inserting the value
+		var records = [[currentPostNo, req.body.userID, req.body.description, req.body.caption]];
+		var sql = "INSERT INTO posts VALUES ?";
+
+		con.query(sql,[records],function(err, result) {
+			if (err) throw err;
+			console.log("Number of records inserted: " + result.affectedRows);
+		});
+	});
 })
 
 app.listen(3001,()=>{

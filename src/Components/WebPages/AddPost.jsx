@@ -148,7 +148,7 @@ const AddPost = ({ pageTitle }) => {
         // }
         console.log("submitted");
     
-        axios.post('http://54.198.89.107:3001/insert/', {
+        axios.post('http://54.198.89.107:3001/insert/posts/', {
             description: description,
             caption: caption,
             userID: "ruoyan"
