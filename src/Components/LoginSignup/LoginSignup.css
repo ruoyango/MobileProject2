@@ -1,8 +1,10 @@
 .signup {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #f5f5f5;
   }
   
   .form {
@@ -15,88 +17,6 @@
   
   .formfield {
     margin-bottom: 20px;
-    width: 220px;
-    height: 59px;
-    color: #fff;
-    background: #01318E;
-    border-radius: 50px;
-    font-size: 19px;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: Arial, Helvetica, sans-serif;
-}
-button
-{
-    display: block;
-    margin:20px auto ;
-    width: 150px;
-    height: 59px;
-    color: #fff;
-    background: #191970;
-    border-radius: 50px;
-    font-size: 19px;
-    font-weight: 700;
-    border:none;
-    box-shadow: 8px 10px 16px -3px rgba(0,0,0,0.75);
-
-}
-
-button:hover
-{
-    background-color: #000080;
-}
-
-button:active
-{
-    background-color: #000080;
-    box-shadow: 6px 8px 3px 0px rgba(0, 0, 0, 0.75);
-    transform: translateY(1px);
-
-}
-.register-link
-{
-    text-align: center;
-}
-a
-{
-    color:white;
-    text-decoration: none;
-    /* text-align: center; */
-    display: block;
-    margin:auto;
-
-}
-img
-{
-    width:40%;
-    height:10%;
-    display:block;
-    margin:20px auto;
-
-}
-
-.container {
-    width: 30%;
-    height: 490px;
-    border: 1px solid black;
-    /* box-shadow: 5px 5px grey; */
-    box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    border-radius: 10px;
-    margin:auto;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    background-color: #284A8E;
-    padding:5px;
-}
-
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 9px;
   }
   
   .formfield label {
@@ -118,128 +38,33 @@ img
   
   .formfield .button {
     text-align: center;
-}
-
-.inputs {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
-
-.input-box {
-    width:80%;
-    height:45px;
-    display:flex;
-    align-items: center;
-    border-radius: 6px;
-    background-color: white;
-    padding:3px;
-}
-
-.input-box input {
-    border:none;
-    outline:none;
-    width:80%;
-    height:30px;
-    margin:3px;
-    background-color: transparent;
-    font-size:15px;
-}
-
-.no-account {
-    text-align: center;
-    cursor: pointer;
-}
-
-.profile-photo {
-    width: 220px;
-    height: 59px;
-}
-
-.home {
-    cursor: pointer;
-}
-
-
-
-
-/*Signup css*/
-
-.wrapper
-{
-    width: 800px;
-    height: 500px;
-    border: 1px solid black;
-    box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 8px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    border-radius: 10px;
-    margin:50px auto;
-    
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
-    background-color: #284A8E;
-    padding:30px;
-}
-
-.wrapper h1{
-    text-align: center;
-    color:white;
-    font-size: 50px;
-}
-
-.inputsLeft
-{
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
-.inputsLeft .input-box
-{
-    width:160%;
-    height:40px;
-}
-
-.inputsLeft .input-box img
-{
-    width:20px;
-    height:20px;
-}
-#moreDiv
-{
-    display:flex;
-    justify-content: space-between;
-}
-#inputRight
-{
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    float:right;
-}
-
-#inputRight button
-{
-    margin-left:10px;
-}
+  }
   
-.button button {
-width: 100%;
-padding: 10px;
-background-color: #007bff;
-color: #fff;
-border: none;
-border-radius: 3px;
-cursor: pointer;
-transition: background-color 0.3s ease;
-}
-
-.button button:hover {
-background-color: #0056b3;
-}
+  .button button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button button:hover {
+    background-color: #0056b3;
+  }
+  
+  .passwordRequirements {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .passwordRequirements ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .passwordRequirements li {
+    margin-bottom: 5px;
+  }

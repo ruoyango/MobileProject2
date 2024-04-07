@@ -79,9 +79,41 @@ export const forgotPassword = (email) => {
     });
   };
   
-  export const logout = () => {
+  export const signOut = () => {
     const user = userpool.getCurrentUser();
     if (user) {
       user.signOut();
+      console.log('User signed out successfully');
+    } else {
+      console.error('No user found to sign out');
     }
   };
+
+  // Example isAuthenticated function using session-based authentication
+export const isAuthenticated = async () => {
+  try {
+    const response = await fetch('/api/auth/isAuthenticated', {
+      method: 'GET',
+      credentials: 'include', // Include cookies in the request
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      return data.isAuthenticated;
+    } else {
+      throw new Error('Failed to check authentication status');
+    }
+  } catch (error) {
+    console.error('Error checking authentication status:', error);
+    return false;
+  }
+};
+
+export const getCurrentUsername = () => {
+  const user = userpool.getCurrentUser();
+  if (user) {
+    return user.getUsername();
+  } else {
+    return null;
+  }
+};

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 import { resetPassword } from '../Services/Authentication';
 import { useLocation, useNavigate } from "react-router-dom";
 import './ResetPassword.css'
@@ -38,7 +38,12 @@ const ResetPassword = () => {
   };
 
   return (
-    <div>
+    <div class="container">
+      <Typography variant="h3" align="center" gutterBottom>
+        Reset Password
+      </Typography>
+    <div class="form">
+    <text class="text">We've sent a verification code to your email</text>
       <TextField
         value={verificationCode}
         onChange={(e) => setVerificationCode(e.target.value)}
@@ -52,6 +57,7 @@ const ResetPassword = () => {
       />
       <Button onClick={handleResetPassword}>Reset Password</Button>
       {error && <div>{error}</div>} {/* Display error message if any */}
+    </div>
     </div>
   );
 };
