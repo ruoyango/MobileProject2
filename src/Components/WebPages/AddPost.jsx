@@ -165,6 +165,8 @@ const AddPost = ({ pageTitle }) => {
     };
 
     return (
+        <>
+        <NavBar pageTitle="Create"/>
         <div className='container'>
             {/* <div className="header">
                 <img src={logo} className="profile-photo" alt="profile" />
