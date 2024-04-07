@@ -67,7 +67,7 @@ app.post('/query/posts/userID/',(req,res)=>{
 	});
 })
 
-app.post('/query/bookmarks/',(req,res)=>{
+app.get('/query/bookmarks/',(req,res)=>{
 	var query ="SELECT * FROM bookmarks;";
 	con.query(query, function (err, results) {
 		if (err) throw err;

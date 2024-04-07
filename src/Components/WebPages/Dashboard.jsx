@@ -75,7 +75,7 @@ const Dashboard = ({pageTitle}) => {
         .then((result) => {
             console.log(result);
 
-            axios.get(process.env.REACT_APP_DATABASE_URL + '/query/bookmark/')
+            axios.get(process.env.REACT_APP_DATABASE_URL + '/query/bookmarks/')
             .then((otherResult) => {
 
                 console.log(otherResult);
