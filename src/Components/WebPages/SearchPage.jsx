@@ -342,7 +342,7 @@ const SearchPage = ({ pageTitle }) => {
             <>
             <div className='post' key={index}>
 
-                <h3>{usernames[index].name}</h3>
+                <h3>@{usernames[index].name}</h3>
                 
                 <div className='captionDiv'>
                     <p className="caption">{captions[index].name}</p>
