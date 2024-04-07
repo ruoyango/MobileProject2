@@ -45,7 +45,7 @@ const AddPost = () => {
     const [data, setData] = useState('');
         
     useEffect(() => {
-        axios.get('http://3.85.234.147:3001/')
+        axios.get('http://54.198.89.107:3001/')
         .then(response => {
             setData(response.data.message);
         })
@@ -147,8 +147,8 @@ const AddPost = () => {
         // }
         console.log("submitted");
     
-        axios.post('http://3.85.234.147:3001/', {
-            first: "Testing"
+        axios.post('http://54.198.89.107:3001/', {
+            name: "Testing"
         })
         .then((result) => {
             console.log(result);
@@ -171,7 +171,7 @@ const AddPost = () => {
                 {modalOpen && <Modal setOpenModal={setModalOpen} />}
             </div>
 
-            <form method="post" action="http://3.85.234.147:3001">
+            <form method="post" action="http://54.198.89.107:3001">
                 <div className="card">
                     <div className="dragArea" onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
                         {filesAdded ? (
@@ -248,7 +248,7 @@ const AddPost = () => {
                 </div>
 
                 <div className="submit-container">
-                    <div type="submit" className="submit" onClick={uploadFile}>Post {data}</div>
+                    <div type="submit" className="submit" onClick={uploadFile}>Post</div>
                 </div>
             </form>
         </div>
