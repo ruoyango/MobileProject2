@@ -34,7 +34,7 @@ export const NavBarData =[
     title:'Logout',
     path:'/',
     icon:<MdLogout />,
-    cName:'nav-text logout'
+    cName:'nav-text'
    },
 
 
