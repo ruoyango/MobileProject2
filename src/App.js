@@ -1,3 +1,9 @@
+/*
+Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Date: 1 April 2024
+Summary: App.js: Defines the main application routes, including login, signup, 
+dashboard, search, saved pages, password reset, and confirmation functionality.
+*/
 import React, {useState} from 'react'
 import './App.css';
 import Login from './Components/LoginSignup/Login'
