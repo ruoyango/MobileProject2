@@ -1,3 +1,8 @@
+/*
+Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Date: 1 April 2024
+Summary: ConfirmationPage.css: Defines the styles for the confirmation page, including the container, form, and error/success messages.
+*/
 .container {
     display: flex;
     flex-direction: column;
