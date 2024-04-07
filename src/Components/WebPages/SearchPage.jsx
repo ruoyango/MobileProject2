@@ -15,17 +15,16 @@ const SearchPage = ({ pageTitle }) => {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    setCaptions([]);
-    setDescriptions([]);
+    console.log(searchText);
  
     axios.post(process.env.REACT_APP_DATABASE_URL + '/query/posts/userID/', {
       search: searchText
     })
     .then((result) => {
-        console.log(result);
-        console.log(result.data[0].caption);
-        console.log(result.data[0].description);
-
+        setCaptions([]);
+        setDescriptions([]);
+        setUsernames([]);
+      
         for (let i = 0; i < result.data.length; ++i) {
             setCaptions((prevCaptions) => [
                 ...prevCaptions,
@@ -69,14 +68,14 @@ const SearchPage = ({ pageTitle }) => {
       
       <div className='board'>
         <div className='boardhalfed'>
-          {captions?.map((caption, index) => (
+          {usernames?.map((username, index) => (
             <>
             <div className='post' key={index}>
 
                 <h3>{usernames[index].name}</h3>
                 
                 <div className='captionDiv'>
-                    <p className="caption">{caption.name}</p>
+                    <p className="caption">{captions[index].name}</p>
                 </div>
                 
                 <div className='descriptionDiv'>

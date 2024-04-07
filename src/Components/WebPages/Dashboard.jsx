@@ -12,15 +12,17 @@ const Dashboard = ({pageTitle}) => {
     const [descriptions, setDescriptions] = useState([]);
     const [captions, setCaptions] = useState([]);
     const [users, setUsers] = useState([]);
+    const [postIDs, setPostIDs] = useState([]);
+    const [bookmarkedPostIDs, setBookmarkedPostIDs] = useState([]);
 
     useEffect(() => {
-        axios.get(process.env.REACT_APP_DATABASE_URL + '/')
+        axios.get(process.env.REACT_APP_DATABASE_URL + '/query/posts/')
         .then((result) => {
-            console.log(result);
-            console.log(result.data[0].caption);
-            console.log(result.data[0].description);
-            console.log(result.data[0].userID)
-
+            setCaptions([]);
+            setDescriptions([]);
+            setUsers([]);
+            setPostIDs([]);
+            
             for (let i = 0; i < result.data.length; ++i) {
                 setCaptions((prevCaptions) => [
                     ...prevCaptions,
@@ -40,19 +42,55 @@ const Dashboard = ({pageTitle}) => {
                         name: result.data[i].userID
                     },
                 ])
-
+                setPostIDs((prevPostIDs) => [
+                    ...prevPostIDs,
+                    {
+                        name: result.data[i].postID
+                    },
+                ])
             }
-            // setCaptions(result.data[0].caption);
-            // setDescriptions(result.data[0].description);
         })
         .catch((e) => {
             console.log(e);
         })
     }, [])
+
+    function removeBookmark(index) {
+        console.log("bookmark!");
+
+        axios.post(process.env.REACT_APP_DATABASE_URL + '/insert/bookmark/add/', {
+            postID: postIDs[index],
+            userID: users[index],
+        })
+        .then((result) => {
+            axios.get(process.env.REACT_APP_DATABASE_URL + '/query/bookmark/')
+            .then((result) => {
+                setBookmarkedPostIDs([]);
+                
+                for (let i = 0; i < result.data.length; ++i) {
+                    setBookmarkedPostIDs((prevBookmarkedPostIDs) => [
+                        ...prevBookmarkedPostIDs,
+                        {
+                            name: result.data[i].postID
+                        },
+                    ])
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+            })
+        })
+        .catch((e) => {
+            console.log(e);
+        })
+    }
+
+    function addBookmark() {
+        console.log("remove!");
+    }
     
     return (
         <>
-
             <NavBar pageTitle="Dashboard" />
             <div className='dashboard'>
 
@@ -75,7 +113,12 @@ const Dashboard = ({pageTitle}) => {
                                 <CiIcons.CiHeart size={70} style={{padding:'5px'}} />
                                 <HiOutlineChatBubbleOvalLeft size={70} style={{padding:'5px'}}/>
                             </div>
-                            <CiIcons.CiBookmark size={70} style={{padding:'5px'}}/>
+
+                            { bookmarkedPostIDs.filter((val) => val.includes(postIDs[index].name)) ? (
+                                <CiIcons.CiBookmark size={70} style={{padding:'5px'}} className='bookmarkIconAdded' onClick={removeBookmark}/>
+                            ) : (
+                                <CiIcons.CiBookmark size={70} style={{padding:'5px'}} className='bookmarkIcon' onClick={addBookmark(index)}/>
+                            )}
                         </div>
 
                         <Link to="/" style={{color:'grey',marginTop:'30px', fontSize:"25px", padding:"15px"}}> View comments here</Link>

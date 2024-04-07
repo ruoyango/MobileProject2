@@ -85,3 +85,22 @@ export const forgotPassword = (email) => {
       user.signOut();
     }
   };
+
+  export const getCurrentUsername = () => {
+    const user = userpool.getCurrentUser();
+    if (user) {
+      return user.getUsername();
+    } else {
+      return null;
+    }
+  };
+
+  export const signOut = () => {
+    const user = userpool.getCurrentUser();
+    if (user) {
+      user.signOut();
+      console.log('User signed out successfully');
+    } else {
+      console.error('No user found to sign out');
+    }
+  };

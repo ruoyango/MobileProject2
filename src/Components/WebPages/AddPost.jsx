@@ -11,8 +11,7 @@ import axios from 'axios';
 import NavBar from '../NavBar.jsx';
 
 import { useNavigate } from "react-router-dom";
-import userpool  from '../../userpool.js'
-import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
+import { getCurrentUsername }  from '../Services/Authentication.js';
 //import ReactS3 from 'react-s3'
 // import { Amplify } from 'aws-amplify'
 //import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
@@ -153,7 +152,7 @@ const AddPost = ({ pageTitle }) => {
         axios.post(process.env.REACT_APP_DATABASE_URL + '/insert/posts/', {
             description: description,
             caption: caption,
-            userID: userpool.getCurrentUser(),
+            userID: getCurrentUsername(),
         })
         .then((result) => {
             console.log(result);

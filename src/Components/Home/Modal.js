@@ -1,7 +1,18 @@
 import React from "react";
 import "./Modal.css";
+import { signOut } from '../Services/Authentication'; // Import logout function
+import { useNavigate } from "react-router-dom";
 
 function Modal({ setOpenModal }) {
+
+  const Navigate = useNavigate();
+
+  const handleLogout = () => {
+    signOut(); // Call the logout function when user clicks "Continue"
+    setOpenModal(false); // Close the modal after logout
+    Navigate('/');
+  };
+
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -26,7 +37,7 @@ function Modal({ setOpenModal }) {
           >
             Cancel
           </button>
-          <button>Continue</button>
+          <button onClick={handleLogout}>Continue</button> {/* Call handleLogout when Continue button is clicked */}
         </div>
       </div>
     </div>
