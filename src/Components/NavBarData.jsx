@@ -20,7 +20,7 @@ export const NavBarData =[
    },
    {
     title:'Create',
-    path:'/home',
+    path:'/addpost',
     icon:<MdOutlineAddBox />,
     cName:'nav-text'
    },
