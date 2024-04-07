@@ -18,7 +18,7 @@ const SearchPage = () => {
     setDescriptions([]);
     let searching = searchText === "" ? "*" : searchText;
  
-    axios.post('http://54.198.89.107:3001/query/posts/userID/', {
+    axios.post('http://3.215.5.249:3001/query/posts/userID/', {
       search: searching
     })
     .then((result) => {

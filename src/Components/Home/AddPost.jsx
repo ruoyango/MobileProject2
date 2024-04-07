@@ -146,7 +146,7 @@ const AddPost = () => {
         // }
         console.log("submitted");
     
-        axios.post('http://54.198.89.107:3001/insert/posts/', {
+        axios.post('http://3.215.5.249:3001/insert/posts/', {
             description: description,
             caption: caption,
             userID: "ruoyan"
@@ -175,7 +175,7 @@ const AddPost = () => {
                 {modalOpen && <Modal setOpenModal={setModalOpen} />}
             </div> */}
 
-            <form method="post" action="http://54.198.89.107:3001">
+            <form method="post" action="http://3.215.5.249:3001">
                 {/* <div className="card">
                     <div className="dragArea" onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
                         {filesAdded ? (

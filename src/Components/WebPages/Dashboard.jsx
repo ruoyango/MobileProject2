@@ -14,7 +14,7 @@ const Dashboard = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        axios.get('http://54.198.89.107:3001/')
+        axios.get('http://3.215.5.249:3001/')
         .then((result) => {
             console.log(result);
             console.log(result.data[0].caption);
@@ -49,18 +49,6 @@ const Dashboard = () => {
             console.log(e);
         })
     }, [])
-
-    // useEffect(() => {
-    //     axios.get('http://54.198.89.107:3001/')
-    //     .then((result) => {
-    //         console.log(result);
-    //         setCaption(result.caption);
-    //     })
-    //     .catch((e) => {
-    //         console.log(e);
-    //     })
-    // }, [caption, description])
-
     
     return (
         <>
