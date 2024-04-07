@@ -39,7 +39,8 @@ app.post('/',(req,res)=>{
 	// 	});
 	// }
 	// res.json('Form recieved');
-	console.log(req.params.name);
+	console.log(req.name);
+	console.log(req.query.name);
 	res.send("This works!");
 })
 
