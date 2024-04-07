@@ -16,10 +16,9 @@ const SearchPage = ({ pageTitle }) => {
   useEffect(() => {
     setCaptions([]);
     setDescriptions([]);
-    let searching = searchText === "" ? "*" : searchText;
  
     axios.post('http://3.215.5.249:3001/query/posts/userID/', {
-      search: searching
+      search: searchText
     })
     .then((result) => {
         console.log(result);
