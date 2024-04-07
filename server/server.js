@@ -97,15 +97,15 @@ app.post('/insert/bookmark/add/',(req,res)=>{
 	});
 })
 
-app.post('/remove/bookmark/remove/',(req,res)=>{
+app.post('/remove/bookmark/',(req,res)=>{
+	// removing based on bookmarkID
+	var records = [req.body.bookmarkID];
+	var sql = "DELETE FROM bookmarks WHERE bookmarkID = ?";
 
-	var search = "%" + req.body.search + "%";
-	console.log(search);
-	var query ="SELECT * FROM posts WHERE posts.userID LIKE ?";
-	con.query(query, [search], function (err, results) {
+	con.query(sql,[records],function(err, result) {
 		if (err) throw err;
-		console.log(results);
-		res.json(results);
+		res.json(result);
+		console.log("Number of records removed: " + result.affectedRows);
 	});
 })
 
