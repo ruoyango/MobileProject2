@@ -33,7 +33,7 @@ function NavBar() {
                             return (
                                 <li key={index} className={item.cName}>
                                     {item.title === 'Logout' ? (
-                                        <Link to={"/home"} onClick={() => setModalOpen(true)}>
+                                        <Link to={"."} onClick={() => setModalOpen(true)}>
                                             {item.icon}
                                             <span>{item.title}</span>
                                         </Link>

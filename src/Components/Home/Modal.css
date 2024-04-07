@@ -10,21 +10,19 @@
 
 .modalContainer {
   width: 500px;
-  height: 500px;
+  height: 400px;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
-  padding: 25px;
   align-items: center;
   justify-content: center;
   margin: auto;
-  width: max-content;
   position: absolute;
-  left: 50%;
-  transform: translateX(100%);
-  top: 50%;
+  left: 100%;
+  transform: translateX(75%);
+  top: -5%;
 
 }
 
