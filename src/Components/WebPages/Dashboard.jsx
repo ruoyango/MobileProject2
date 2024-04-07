@@ -1,7 +1,7 @@
 import React from 'react'
 import "./style.css"
 import NavBar from "../NavBar"
-import Sidebar from"../NavBar2"
+// import Sidebar from"../NavBar2"
 import test from '../Assets/user.png'
 import * as CiIcons from 'react-icons/ci'
 import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2"

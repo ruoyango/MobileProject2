@@ -4,7 +4,7 @@ import NavBar from '../NavBar'
 import { IoSearchOutline } from "react-icons/io5";
 import * as CiIcons from 'react-icons/ci'
 import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2"
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import test from '../Assets/7ad47d8666404417a572428d9ce78a82.png'
 
 const SearchPage = () => {

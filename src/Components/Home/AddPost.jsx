@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { DefaultPlayer as Video } from 'react-html5video'
 import './AddPost.css'
 import Modal from "./Modal.js";

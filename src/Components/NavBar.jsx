@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link } from "react-router-dom"
 import "./navBar.css"
-import { motion } from 'framer-motion'
+// import { motion } from 'framer-motion'
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { NavBarData } from './NavBarData';

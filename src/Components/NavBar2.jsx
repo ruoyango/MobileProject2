@@ -1,15 +1,15 @@
 import React , {useState}from 'react'
-import { Sidebar, Menu, MenuItem, useProSidebar} from "react-pro-sidebar"
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar"
 import './navBar.css'
-import * as FaIcons from "react-icons/fa"
-import { MdOutlineAddBox } from "react-icons/md";
-import { MdLogout } from "react-icons/md";
+// import * as FaIcons from "react-icons/fa"
+// import { MdOutlineAddBox } from "react-icons/md";
+// import { MdLogout } from "react-icons/md";
 import { NavBarData } from './NavBarData';
 import {Link} from "react-router-dom"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import { IconContext } from 'react-icons';
-import account from "./Assets/account.png"
+// import account from "./Assets/account.png"
 function NavBar2() {
 const [menuCollapse, setMenuCollapse] = useState(false)
 const showSidebar =()=> setMenuCollapse(!menuCollapse);
