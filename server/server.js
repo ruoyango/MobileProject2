@@ -50,17 +50,26 @@ app.post('/',(req,res)=>{
 		console.log(results);
 		currentPostNo = results.length;
 		console.log(currentPostNo);
-	 });
+	});
 
-	// var records = [[currentPostNo, req.body.userID, req.body.description, req.body.caption]];
-	// var sql = "INSERT INTO posts VALUES ?";
+	var records = [[currentPostNo, req.body.userID, req.body.description, req.body.caption]];
+	var sql = "INSERT INTO posts VALUES ?";
 
-	// con.query(sql,[records],function(err, result) {
-	// 	if (err) throw err;
-	// 	console.log("Number of records inserted: " + result.affectedRows);
-	// });
+	con.query(sql,[records],function(err, result) {
+		if (err) throw err;
+		console.log("Number of records inserted: " + result.affectedRows);
+	});
 
-	console.log(req.body);
+	console.log("NEW QUERY");
+	var query ="SELECT * FROM posts;";
+	con.query(query, function (err, results) {
+		if (err) throw err;
+		console.log(results);
+		currentPostNo = results.length;
+		console.log(currentPostNo);
+	});
+
+	//console.log(req.body);
 })
 
 app.listen(3001,()=>{
