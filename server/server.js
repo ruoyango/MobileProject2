@@ -59,6 +59,7 @@ app.post('/insert/posts/',(req,res)=>{
 
 app.get('/query/posts/userID/',(req,res)=>{
 
+	console.log(req.body.search);
 	var query ="SELECT * FROM posts WHERE posts.userID LIKE ?";
 	con.query(query, [req.body.search], function (err, results) {
 		if (err) throw err;
