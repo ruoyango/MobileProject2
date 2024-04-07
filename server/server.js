@@ -57,15 +57,6 @@ app.post('/',(req,res)=>{
 		con.query(sql,[records],function(err, result) {
 			if (err) throw err;
 			console.log("Number of records inserted: " + result.affectedRows);
-			
-			console.log("NEW QUERY TO TEST");
-			var query ="SELECT * FROM posts;";
-			con.query(query, function (err, results) {
-				if (err) throw err;
-				console.log(results);
-				currentPostNo = results.length;
-				console.log(currentPostNo);
-			});
 		});
 	});
 

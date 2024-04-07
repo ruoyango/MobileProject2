@@ -1,19 +1,19 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import './AddPost.css'
-import Modal from "./Modal.js";
-import logo from '../../logo.svg'
-import home from '../Assets/Home.png'
-import logoutlogo from '../Assets/logoutlogo.png'
-import searchlogo from '../Assets/searchlogo.png'
-import savelogo from '../Assets/savelogo.png'
-import uploadlogo from '../Assets/uploadlogo.png'
+// import Modal from "./Modal.js";
+// import logo from '../../logo.svg'
+// import home from '../Assets/Home.png'
+// import logoutlogo from '../Assets/logoutlogo.png'
+// import searchlogo from '../Assets/searchlogo.png'
+// import savelogo from '../Assets/savelogo.png'
+// import uploadlogo from '../Assets/uploadlogo.png'
 import axios from 'axios';
-
+import { useNavigate } from "react-router-dom";
 //import ReactS3 from 'react-s3'
 // import { Amplify } from 'aws-amplify'
 //import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
-let totalImages = 0;
+// let totalImages = 0;
 // const config = {
 //     bucketName: 'mobile-project-2-data',
 //     region: 'us-east-1',
@@ -23,6 +23,8 @@ let totalImages = 0;
 // const client = new S3Client(config);
 
 const AddPost = () => {
+
+    let navigate = useNavigate();
 
     // useEffect(() => {
     //     Amplify.configure({
@@ -155,6 +157,9 @@ const AddPost = () => {
         .catch((e) => {
             console.log(e);
         })
+
+        let path = "/home";
+        navigate(path);
     };
 
     return (
