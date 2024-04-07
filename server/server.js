@@ -91,6 +91,7 @@ app.post('/insert/bookmark/add/',(req,res)=>{
 
 		con.query(sql,[records],function(err, result) {
 			if (err) throw err;
+			res.json(result);
 			console.log("Number of records inserted: " + result.affectedRows);
 		});
 	});

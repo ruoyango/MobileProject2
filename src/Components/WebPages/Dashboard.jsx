@@ -6,6 +6,7 @@ import * as CiIcons from 'react-icons/ci'
 import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2"
 import {Link} from "react-router-dom";
 import axios from 'axios';
+import { getCurrentUsername }  from '../Services/Authentication.js';
 
 const Dashboard = ({pageTitle}) => {
 
@@ -56,22 +57,31 @@ const Dashboard = ({pageTitle}) => {
     }, [])
 
     function removeBookmark(index) {
-        console.log("bookmark!");
+        console.log("remove!");
+    }
 
+    function addBookmark(index) {
+        console.log("bookmark!");
+        
         axios.post(process.env.REACT_APP_DATABASE_URL + '/insert/bookmark/add/', {
-            postID: postIDs[index],
-            userID: users[index],
+            postID: postIDs[index].name,
+            userID: getCurrentUsername(),
         })
         .then((result) => {
+            console.log(result);
+
             axios.get(process.env.REACT_APP_DATABASE_URL + '/query/bookmark/')
-            .then((result) => {
+            .then((otherResult) => {
+
+                console.log(otherResult);
+
                 setBookmarkedPostIDs([]);
                 
-                for (let i = 0; i < result.data.length; ++i) {
+                for (let i = 0; i < otherResult.data.length; ++i) {
                     setBookmarkedPostIDs((prevBookmarkedPostIDs) => [
                         ...prevBookmarkedPostIDs,
                         {
-                            name: result.data[i].postID
+                            name: otherResult.data[i].postID
                         },
                     ])
                 }
@@ -83,10 +93,6 @@ const Dashboard = ({pageTitle}) => {
         .catch((e) => {
             console.log(e);
         })
-    }
-
-    function addBookmark() {
-        console.log("remove!");
     }
     
     return (
@@ -114,10 +120,10 @@ const Dashboard = ({pageTitle}) => {
                                 <HiOutlineChatBubbleOvalLeft size={70} style={{padding:'5px'}}/>
                             </div>
 
-                            { bookmarkedPostIDs.filter((val) => val.includes(postIDs[index].name)) ? (
+                            { bookmarkedPostIDs.find(e => e.Name === postIDs[index].name) ? (
                                 <CiIcons.CiBookmark size={70} style={{padding:'5px'}} className='bookmarkIconAdded' onClick={removeBookmark}/>
                             ) : (
-                                <CiIcons.CiBookmark size={70} style={{padding:'5px'}} className='bookmarkIcon' onClick={addBookmark(index)}/>
+                                <CiIcons.CiBookmark size={70} style={{padding:'5px'}} className='bookmarkIcon' onClick={() => addBookmark(index)}/>
                             )}
                         </div>
 
