@@ -94,8 +94,6 @@ const SearchPage = ({ pageTitle }) => {
                     </div>
                     <CiIcons.CiBookmark size={70} style={{padding:'5px'}}/>
                 </div>
-
-                <Link to="/" style={{color:'grey',marginTop:'30px', fontSize:"25px", padding:"15px"}}> View comments here</Link>
             </div>
             </>
           ))}

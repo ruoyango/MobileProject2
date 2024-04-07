@@ -133,14 +133,14 @@ const Dashboard = ({pageTitle}) => {
     function removeBookmark(index) {
         console.log("remove!");
 
-        let bookmarkIndex = bookmarkedPostIDs.find(e => e.name === postIDs[index].name);
+        let bookmarkIndex = bookmarkedPostIDs.findIndex(e => e.name === postIDs[index].name);
+        console.log(bookmarkIndex);
 
-        console.log(bookmarkIDs);
-        
         axios.post(process.env.REACT_APP_DATABASE_URL + '/remove/bookmark/', {
             bookmarkID: bookmarkIDs[bookmarkIndex].name,
         })
         .then((result) => {
+            console.log(result);
             axios.get(process.env.REACT_APP_DATABASE_URL + '/query/bookmarks/')
             .then((otherResult) => {
 
@@ -205,8 +205,6 @@ const Dashboard = ({pageTitle}) => {
                                 <CiIcons.CiBookmark size={70} style={{padding:'5px'}} className='bookmarkIcon' onClick={() => addBookmark(index)}/>
                             )}
                         </div>
-
-                        <Link to="/" style={{color:'grey',marginTop:'30px', fontSize:"25px", padding:"15px"}}> View comments here</Link>
                     </div>
                     </>
                 ))}

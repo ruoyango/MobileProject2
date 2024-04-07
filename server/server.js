@@ -39,10 +39,14 @@ app.post('/insert/posts/',(req,res)=>{
 	// getting primary key
 	let currentPostNo = 0;
 
-	var query ="SELECT * FROM posts;";
+	var query ="SELECT * FROM posts ORDER BY postID DESC LIMIT 1;";
 	con.query(query, function (err, results) {
 		if (err) throw err;
-		currentPostNo = results.length;
+
+		if (results.length > 0) {
+			
+			currentPostNo = results[0].postID + 1;
+		}
 		
 		// inserting the value
 		var records = [[currentPostNo, req.body.userID, req.body.description, req.body.caption]];
@@ -83,8 +87,9 @@ app.post('/insert/bookmark/add/',(req,res)=>{
 	var query ="SELECT * FROM bookmarks ORDER BY bookmarkID DESC LIMIT 1;";
 	con.query(query, function (err, results) {
 		if (err) throw err;
+		
 		if (results.length > 0) {
-			console.log(results[0].bookmarkID);
+			
 			currentBookmarkNo = results[0].bookmarkID + 1;
 		}
 		

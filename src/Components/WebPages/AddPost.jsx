@@ -1,5 +1,5 @@
 /*
-Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Authors: Go Ruo Yan
 Date: 1 April 2024
 Summary: AddPost.jsx allows users to create and upload new posts, including adding captions and descriptions.
 */
