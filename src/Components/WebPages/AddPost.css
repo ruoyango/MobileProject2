@@ -24,15 +24,17 @@ Summary: AddPost.css: Defines the styles for the add post page, including the te
     height: 100%;
 }
 .containerAddPost .inputs {
+    display: grid;
     align-items: center;
     justify-content: center;
     justify-items: center;
     width: 100%;
 }
 .containerAddPost .inputs input {
-    width: 80%;
-    height: 100%;
+    width: 87%;
+    height: 50%;
     padding: 10px;
+    margin-top: 20px;
     font-size: 30px;
 }
 .card {
@@ -54,6 +56,22 @@ Summary: AddPost.css: Defines the styles for the add post page, including the te
     border-radius: 5px;
     box-shadow: 1px 1px 10px 1px gray;
     background: #f4f3f9;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 20px;
+}
+.submit-container-add {
+    display: flex;
+    justify-content: center;
+}
+.submit-container-add .submit {
+    height: 50px;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 15px;
+    border-radius: 50px;
+    box-shadow: 1px 1px 10px 1px gray;
+    background: #9297ff;
     margin-top: 20px;
     padding: 10px;
     font-size: 20px;

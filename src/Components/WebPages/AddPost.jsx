@@ -4,7 +4,7 @@ Date: 1 April 2024
 Summary: AddPost.jsx allows users to create and upload new posts, including adding captions and descriptions.
 */
 import React, { useState } from 'react'
-import './AddPost.css'
+import './AddPost.css';
 import axios from 'axios';
 import NavBar from '../NavBar.jsx';
 import { useNavigate } from "react-router-dom";
@@ -63,7 +63,7 @@ const AddPost = ({ pageTitle }) => {
                     </div>
                 </div>
 
-                <div className="submit-container">
+                <div className="submit-container-add">
                     <button type="submit" className="submit" onClick={uploadText}>Post</button>
                 </div>
             </form>

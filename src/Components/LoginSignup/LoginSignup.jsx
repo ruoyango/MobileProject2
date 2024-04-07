@@ -4,7 +4,6 @@ Date: 1 April 2024
 Summary: LoginSignup.jsx implements the functionality for users to sign up, 
 including validation of form fields and creating a new user account.
 */
-import { Button, TextField} from '@mui/material';
 import React, { useState } from 'react';
 import { Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -95,7 +94,7 @@ const LoginSignup = () => {
                 alert("Couldn't sign up");
               } else {
                 console.log(data);
-                alert('User Added Successfully');
+                //alert('User Added Successfully');
                 Navigate('/confirmation', { state: { username } });
               }
             }
@@ -143,6 +142,7 @@ const LoginSignup = () => {
             label="Password"
             helperText={passwordErr}
           />
+        </div>
           <div className="passwordRequirements">
             <p>Password requirements:</p>
             <ul>
@@ -152,7 +152,6 @@ const LoginSignup = () => {
               <li>Contains at least 1 lowercase letter</li>
             </ul>
           </div>
-        </div>
         <div className="formfield">
           <Button
             type="submit"

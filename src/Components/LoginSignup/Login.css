@@ -4,12 +4,11 @@ Date: 1 April 2024
 Summary: Login.css: Defines the styles for the login page, including the form, input fields, and button.
 */
 .login {
-    display: flex;
+    display: grid;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f5f5f5;
+    margin-top: 250px;
   }
   
   .title {

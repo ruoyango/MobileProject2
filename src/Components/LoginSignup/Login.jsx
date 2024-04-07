@@ -87,7 +87,7 @@ const Login = () => {
 
   return (
     <div className="login">
-      <Typography variant="h3" align="center" gutterBottom>
+      <Typography variant="h3" align="center" gutterBottom className='title'>
         Twittergram
       </Typography>
       <div className="form">
