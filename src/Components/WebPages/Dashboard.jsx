@@ -101,6 +101,7 @@ const Dashboard = ({pageTitle}) => {
             .then((otherResult) => {
 
                 setBookmarkedPostIDs([]);
+                setBookmarkIDs([]);
                 
                 for (let i = 0; i < otherResult.data.length; ++i) {
                     if (otherResult.data[i].userID === getCurrentUsername()) {
@@ -131,15 +132,20 @@ const Dashboard = ({pageTitle}) => {
 
     function removeBookmark(index) {
         console.log("remove!");
+
+        let bookmarkIndex = bookmarkedPostIDs.find(e => e.name === postIDs[index].name);
+
+        console.log(bookmarkIDs);
         
         axios.post(process.env.REACT_APP_DATABASE_URL + '/remove/bookmark/', {
-            bookmarkID: bookmarkIDs[index].name,
+            bookmarkID: bookmarkIDs[bookmarkIndex].name,
         })
         .then((result) => {
             axios.get(process.env.REACT_APP_DATABASE_URL + '/query/bookmarks/')
             .then((otherResult) => {
 
                 setBookmarkedPostIDs([]);
+                setBookmarkIDs([]);
                 
                 for (let i = 0; i < otherResult.data.length; ++i) {
                     if (otherResult.data[i].userID === getCurrentUsername()) {

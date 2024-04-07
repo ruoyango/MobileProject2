@@ -80,10 +80,10 @@ app.post('/insert/bookmark/add/',(req,res)=>{
 	// getting primary key
 	let currentBookmarkNo = 0;
 
-	var query ="SELECT * FROM bookmarks;";
+	var query ="SELECT * FROM bookmarks ORDER BY bookmarkID DESC LIMIT 1;";
 	con.query(query, function (err, results) {
 		if (err) throw err;
-		currentBookmarkNo = results.length;
+		currentBookmarkNo = results.bookmarkID + 1;
 		
 		// inserting the value
 		var records = [[currentBookmarkNo, req.body.userID, req.body.postID]];
