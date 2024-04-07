@@ -132,6 +132,7 @@ const AddPost = () => {
         // } catch (err) {
         //   console.error(err);
         // }
+        console.log('clicked');
     };
 
     return (
