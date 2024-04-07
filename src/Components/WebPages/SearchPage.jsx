@@ -11,13 +11,14 @@ const SearchPage = ({ pageTitle }) => {
 
   const [descriptions, setDescriptions] = useState([]);
   const [captions, setCaptions] = useState([]);
+  const [usernames, setUsernames] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     setCaptions([]);
     setDescriptions([]);
  
-    axios.post('http://3.215.5.249:3001/query/posts/userID/', {
+    axios.post(process.env.REACT_APP_DATABASE_URL + '/query/posts/userID/', {
       search: searchText
     })
     .then((result) => {
@@ -38,6 +39,12 @@ const SearchPage = ({ pageTitle }) => {
                     name: result.data[i].description
                 },
             ])
+            setUsernames((prevUsernames) => [
+                ...prevUsernames,
+                {
+                    name: result.data[i].userID
+                },
+            ])
 
         }
     })
@@ -46,13 +53,17 @@ const SearchPage = ({ pageTitle }) => {
     })
   }, [searchText])
 
+  function handleSearch(event) {
+    setSearchText(event.target.value);
+  }
+
   return (
 
     <>
       <NavBar pageTitle="Search" />
       <div className="search-box">
         <IoSearchOutline size={23} style={{ color: 'rgba(0,0,0,0.5)' }} />
-        <input type="text" className="search-input" placeholder="Search.."/>
+        <input type="text" className="search-input" placeholder="Search.." onChange={handleSearch}/>
 
       </div>
       
@@ -62,7 +73,7 @@ const SearchPage = ({ pageTitle }) => {
             <>
             <div className='post' key={index}>
 
-                <h3>@Account name</h3>
+                <h3>{usernames[index].name}</h3>
                 
                 <div className='captionDiv'>
                     <p className="caption">{caption.name}</p>

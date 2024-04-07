@@ -14,7 +14,7 @@ const Dashboard = ({pageTitle}) => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        axios.get('http://3.215.5.249:3001/')
+        axios.get(process.env.REACT_APP_DATABASE_URL + '/')
         .then((result) => {
             console.log(result);
             console.log(result.data[0].caption);

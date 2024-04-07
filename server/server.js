@@ -3,6 +3,7 @@ const bodyParser=require('body-parser');
 const cors=require('cors');
 
 const app=express();
+const otherapp=express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
@@ -71,4 +72,14 @@ app.post('/query/posts/userID/',(req,res)=>{
 
 app.listen(3001,()=>{
   console.log("Port 3001");
+})
+
+otherapp.use(cors());
+
+otherapp.listen(3000,()=>{
+  console.log("Port 3000");
+})
+
+otherapp.get('/.well-known/pki-validation/BFD4C24715A0FB4B39B6346110D58EC5.txt', (req, res) => {
+	res.sendFile('./BFD4C24715A0FB4B39B6346110D58EC5.txt');
 })

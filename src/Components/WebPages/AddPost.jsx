@@ -11,6 +11,8 @@ import axios from 'axios';
 import NavBar from '../NavBar.jsx';
 
 import { useNavigate } from "react-router-dom";
+import userpool  from '../../userpool.js'
+import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 //import ReactS3 from 'react-s3'
 // import { Amplify } from 'aws-amplify'
 //import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
@@ -148,10 +150,10 @@ const AddPost = ({ pageTitle }) => {
         // }
         console.log("submitted");
     
-        axios.post('http://3.215.5.249:3001/insert/posts/', {
+        axios.post(process.env.REACT_APP_DATABASE_URL + '/insert/posts/', {
             description: description,
             caption: caption,
-            userID: "ruoyan"
+            userID: userpool.getCurrentUser(),
         })
         .then((result) => {
             console.log(result);
@@ -179,7 +181,7 @@ const AddPost = ({ pageTitle }) => {
                 {modalOpen && <Modal setOpenModal={setModalOpen} />}
             </div> */}
 
-            <form method="post" action="http://3.215.5.249:3001">
+            <form method="post" action={process.env.REACT_APP_DATABASE_URL}>
                 {/* <div className="card">
                     <div className="dragArea" onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
                         {filesAdded ? (
