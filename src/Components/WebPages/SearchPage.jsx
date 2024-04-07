@@ -220,13 +220,15 @@ const SearchPage = ({ pageTitle }) => {
       postID: postIDs[index].name
     })
     .then((result) => {
+      console.log(result.data);
+
       setLikeCount([]);
       
       for (let i = 0; i < result.data.length; ++i) {
         setLikeCount((prevLikeCounts) => [
           ...prevLikeCounts,
           {
-              name: result.data[i].likeCount
+            name: result.data[i].likeCount
           },
         ])
       }
@@ -268,12 +270,12 @@ const SearchPage = ({ pageTitle }) => {
                 
                 <div className='belowness'>
                     <div id="icons" className='icons'>
-                        { likedIDs.find(e => e.name === postIDs[index].name) ? (
-                          <CiIcons.CiHeart size={70} style={{padding:'5px'}} className='bookmarkIconAdded' onClick={() => removeLike(index)}/>
-                        ) : (
-                          <CiIcons.CiHeart size={70} style={{padding:'5px'}} className='bookmarkIcon' onClick={() => addLike(index)}/>
-                        )}
-                        <p>1 likes</p>
+                      { likedIDs.find(e => e.name === postIDs[index].name) ? (
+                        <CiIcons.CiHeart size={70} style={{padding:'5px'}} className='bookmarkIconAdded' onClick={() => removeLike(index)}/>
+                      ) : (
+                        <CiIcons.CiHeart size={70} style={{padding:'5px'}} className='bookmarkIcon' onClick={() => addLike(index)}/>
+                      )}
+                      <p>1 likes</p>
                     </div>
                     { bookmarkedPostIDs.find(e => e.name === postIDs[index].name) ? (
                         <CiIcons.CiBookmark size={70} style={{padding:'5px'}} className='bookmarkIconAdded' onClick={() => removeBookmark(index)}/>

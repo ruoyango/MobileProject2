@@ -141,20 +141,25 @@ app.post('/insert/likes/',(req,res)=>{
 		con.query(sql,[records],function(err, result) {
 			if (err) throw err;
 			res.json(result);
-			console.log("Number of records inserted: " + result.affectedRows);
+			console.log("Number of records inserted for likes: " + result.affectedRows);
 		});
 	});
 })
 
 app.post('/increment/posts/likeCount/',(req,res)=>{
-	// removing based on bookmarkID
+	// incrementing based on likeID
 	var postID = [req.body.postID];
 	var sql = "UPDATE posts SET likeCount = likeCount + 1 WHERE postID = ?";
 
 	con.query(sql,[postID],function(err, result) {
 		if (err) throw err;
-		res.json(result);
-		console.log("Number of records removed: " + result.affectedRows);
+		console.log("Number of records incremented: " + result.affectedRows);
+		
+		var newsql = "SELECT posts.likeCount FROM posts";
+		con.query(newsql,function(err, newresult) {
+			if (err) throw err;
+			res.json(newresult);
+		});
 	});
 })
 
