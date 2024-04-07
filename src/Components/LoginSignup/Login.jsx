@@ -87,6 +87,9 @@ const Login = () => {
 
   return (
     <div className="login">
+      <Typography variant="h3" align="center" gutterBottom>
+        Twittergram
+      </Typography>
       <div className="form">
         <div className="formfield">
           <TextField

@@ -12,27 +12,24 @@ import SavedPage from './Components/WebPages/SavedPage'
 import SearchPage from './Components/WebPages/SearchPage'
 import {Route, Routes} from 'react-router-dom'
 import LoginSignup from './Components/LoginSignup/LoginSignup';
-
-
 import AddPost from './Components/WebPages/AddPost';
-import ForgotPassword from './Components/LoginSignup/FogotPassword';
+import ForgotPassword from './Components/LoginSignup/ForgotPassword';
 import ResetPassword from './Components/LoginSignup/ResetPassword';
 import ConfirmationPage from './Components/LoginSignup/ConfirmationPage';
 
 function App() {
-  const [pageTitle, setPageTitle] = useState('Dashboard');
   return (
     <div>
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route path="/signup" element={<LoginSignup />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/confirmation" element={<ConfirmationPage />} />
+        <Route path="/home" element={<Dashboard pageTitle="Dashboard" />} />
+        <Route path="/search" element={<SearchPage pageTitle="Search" />} />
+        <Route path="/saved" element={<SavedPage />} />
         <Route path="/addpost" element={<AddPost />} />
-        <Route path="/home" element={<Dashboard pageTitle="Dashboard"/>}/>
-        <Route path="/search" element={<SearchPage pageTitle="Search"/>}/>
-        <Route path="/saved" element={<SavedPage/>}/>
-        <Route path='/forgotpassword' element={<ForgotPassword/>} />
-        <Route path='/resetpassword' element={<ResetPassword/>} />
-        <Route path='/confirmation' element={<ConfirmationPage/>}/>
       </Routes>
     </div>
   );

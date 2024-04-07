@@ -5,7 +5,7 @@ Summary: ConfirmationPage.jsx handles the user confirmation process after signin
 allowing users to enter a verification code and confirm their account.
 */
 import React, { useState } from 'react';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 import { confirmSignUp } from '../Services/Authentication'; // Import function to handle confirmation
 import { useLocation, useNavigate } from "react-router-dom";
 import './ConfirmationPage.css'
@@ -34,7 +34,12 @@ const ConfirmationPage = () => {
   };
 
   return (
-    <div>
+    <div class="container">
+      <Typography variant="h3" align="center" gutterBottom>
+        Verify Email
+      </Typography>
+    <div class="form">
+    <text class="text">We've sent a verification code to your email!</text>
       <TextField
         value={code}
         onChange={(e) => setCode(e.target.value)}
@@ -43,6 +48,7 @@ const ConfirmationPage = () => {
       <Button onClick={handleConfirmCode}>Confirm Code</Button>
       {error && <div>Error: {error}</div>}
       {successMessage && <div>{successMessage}</div>}
+    </div>
     </div>
   );
 };

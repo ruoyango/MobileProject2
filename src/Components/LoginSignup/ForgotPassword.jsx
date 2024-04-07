@@ -5,7 +5,7 @@ Summary: FogotPassword.jsx provides a way for users to reset their
 password by sending a verification code to their email.
 */
 import React, { useState } from 'react';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 import { forgotPassword } from '../Services/Authentication';
 import { useNavigate } from 'react-router-dom';
 import './ForgotPassword.css'
@@ -47,7 +47,11 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div>
+    <div class="container">
+      <Typography variant="h3" align="center" gutterBottom>
+        Forgot Password
+      </Typography>
+    <div class="form">
       <TextField
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -56,6 +60,7 @@ const ForgotPassword = () => {
       <Button onClick={handleForgotPassword}>Send Verification Code</Button>
       {error && <div>Error: {error}</div>}
       {successMessage && <div>{successMessage}</div>}
+    </div>
     </div>
   );
 };
