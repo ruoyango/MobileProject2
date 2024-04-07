@@ -10,10 +10,10 @@ var mysql = require('mysql');
  
 // create a connection variable with the required details
 var con = mysql.createConnection({
-  host: "database-1.c9oc2gg4a376.us-east-1.rds.amazonaws.com", // ip address of server running mysql
+  host: "database-2.c9oc2gg4a376.us-east-1.rds.amazonaws.com", // ip address of server running mysql
   user: "admin", // user name to your mysql database
   password: "testtest", // corresponding password
-  database: "allPosts" // use the specified database
+  database: "allPostInfo" // use the specified database
 });
  
 // make to connection to the database.

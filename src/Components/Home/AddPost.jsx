@@ -147,7 +147,7 @@ const AddPost = () => {
                 {modalOpen && <Modal setOpenModal={setModalOpen} />}
             </div>
 
-            <form method="post" action="http://localhost:3001">
+            <form method="post" action="http://3.85.234.147:3001">
                 <div className="card">
                     <div className="dragArea" onDragOver={onDragOver} onDragLeave={onDragLeave} onDrop={onDrop}>
                         {filesAdded ? (
