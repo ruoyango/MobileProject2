@@ -1,3 +1,10 @@
+/*
+Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Date: 1 April 2024
+Summary: NavBar.jsx implements a responsive navigation bar with a sidebar menu 
+that can be toggled open and closed, and a logout functionality that opens a modal dialog.
+*/
+
 import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 import "./navBar.css"
@@ -33,7 +40,7 @@ function NavBar({pageTitle}) {
                         {NavBarData.map((item, index) => {
                             return (
                                 <li key={index} className={item.cName}>
-                                    {item.title === 'Logout' ? (
+                                    {item.title === 'Logout' ? ( // Open confirmation box when click log out
                                         <Link to={"."} onClick={() => setModalOpen(true)}>
                                             {item.icon}
                                             <span>{item.title}</span>

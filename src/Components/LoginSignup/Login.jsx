@@ -1,3 +1,12 @@
+/*
+Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Date: 1 April 2024
+Summary: Login.jsx Handles user login functionality, including input validation, 
+authentication, and navigation to other pages. It manages state variables 
+for user input, error messages, and login status, and provides buttons for 
+login, sign up, and forgot password.
+*/
+
 import React, { useState } from 'react';
 import { Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
