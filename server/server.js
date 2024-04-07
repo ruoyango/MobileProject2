@@ -41,6 +41,7 @@ app.post('/',(req,res)=>{
 	// }
 	// res.json('Form recieved');
 	console.log("postt");
+	res.json('POSTED');
 })
 
 app.listen(3001,()=>{

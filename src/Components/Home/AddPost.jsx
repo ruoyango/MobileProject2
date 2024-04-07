@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { DefaultPlayer as Video } from 'react-html5video'
 import './AddPost.css'
 import Modal from "./Modal.js";
@@ -8,6 +8,7 @@ import logoutlogo from '../Assets/logoutlogo.png'
 import searchlogo from '../Assets/searchlogo.png'
 import savelogo from '../Assets/savelogo.png'
 import uploadlogo from '../Assets/uploadlogo.png'
+import axios from 'axios';
 
 //import ReactS3 from 'react-s3'
 // import { Amplify } from 'aws-amplify'
@@ -40,6 +41,18 @@ const AddPost = () => {
     //     })
     
     // }, []);
+
+    const [data, setData] = useState('');
+        
+    useEffect(() => {
+        axios.get('http://3.85.234.147:3001/')
+        .then(response => {
+            setData(response.data.message);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }, []);
 
     const [modalOpen, setModalOpen] = useState(false);
     const [images, setImages] = useState([]);
@@ -132,7 +145,17 @@ const AddPost = () => {
         // } catch (err) {
         //   console.error(err);
         // }
-        console.log('clicked');
+        console.log("submitted");
+    
+        axios.post('http://3.85.234.147:3001/', {
+            first: "Testing"
+        })
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((e) => {
+            console.log(e);
+        })
     };
 
     return (
@@ -225,7 +248,7 @@ const AddPost = () => {
                 </div>
 
                 <div className="submit-container">
-                    <div type="submit" className="submit" onClick={uploadFile}>Post</div>
+                    <div type="submit" className="submit" onClick={uploadFile}>Post {data}</div>
                 </div>
             </form>
         </div>
