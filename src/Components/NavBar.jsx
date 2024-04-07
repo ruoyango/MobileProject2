@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 import "./navBar.css"
 // import { motion } from 'framer-motion'
@@ -19,8 +19,8 @@ function NavBar( { pageTitle }) {
         // Add more pages as needed
     ];
     return (
-    
-        
+
+
         <>
         <IconContext.Provider value={{color: 'white', size:'40px'}}>
             <div className="sidebar">
@@ -36,17 +36,28 @@ function NavBar( { pageTitle }) {
                           <AiIcons.AiOutlineClose/>
                         </Link>
                     </li>
-                    {NavBarData.map((item,index) => {return (
-                        <li key={index} className={item.cName}>
-                          <Link to={item.path}>
-                            {item.icon}
-                            <span>{item.title}</span>
-                          </Link>
-                        </li>
-                    )})}
-                </ul>
-            </nav>
+                   
+                        {NavBarData.map((item, index) => {
+                            return (
+                                <li key={index} className={item.cName}>
+                                    {item.title === 'Logout' ? (
+                                        <Link to={"."} onClick={() => setModalOpen(true)}>
+                                            {item.icon}
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    ) : (
+                                        <Link to={item.path}>
+                                            {item.icon}
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    )}
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </nav>
             </IconContext.Provider>
+            {modalOpen && <Modal setOpenModal={setModalOpen} />}
         </>
     )
 }

@@ -5,6 +5,7 @@ const cors=require('cors');
 const app=express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+app.use(express.json());
 
 var mysql = require('mysql');
  
@@ -23,11 +24,17 @@ con.connect(function(err) {
  console.log('connection successful');
 });
 
+// for testing
 app.get('/',(req,res)=>{
-  res.json('OK');
+	var query ="SELECT * FROM posts;";
+	con.query(query, function (err, results) {
+		if (err) throw err;
+		res.json(results);
+		console.log(results);
+	});
 })
 
-app.post('/',(req,res)=>{
+app.post('/insert/',(req,res)=>{
 	// var records = [[req.body.name,req.body.rollno]];
 	// if(records[0][0]!=null)
 	// {
@@ -39,8 +46,27 @@ app.post('/',(req,res)=>{
 	// 	});
 	// }
 	// res.json('Form recieved');
-	console.log(req.body);
-	res.send("This works!");
+	// getting primary key
+	let currentPostNo = 0;
+
+	var query ="SELECT * FROM posts;";
+	con.query(query, function (err, results) {
+		if (err) throw err;
+		console.log(results);
+		currentPostNo = results.length;
+		console.log(currentPostNo);
+		
+		var records = [[currentPostNo, req.body.userID, req.body.description, req.body.caption]];
+		var sql = "INSERT INTO posts VALUES ?";
+
+		con.query(sql,[records],function(err, result) {
+			if (err) throw err;
+			console.log("Number of records inserted: " + result.affectedRows);
+		});
+	});
+
+
+	//console.log(req.body);
 })
 
 app.listen(3001,()=>{
