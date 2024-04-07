@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './App.css';
 import Login from './Components/LoginSignup/Login'
 import Dashboard from './Components/WebPages/Dashboard'
@@ -8,9 +8,10 @@ import {Route, Routes} from 'react-router-dom'
 import LoginSignup from './Components/LoginSignup/LoginSignup';
 
 
-import AddPost from './Components/Home/AddPost';
+import AddPost from './Components/WebPages/AddPost';
 
 function App() {
+  const [pageTitle, setPageTitle] = useState('Dashboard');
   return (
     <div>
       
@@ -29,8 +30,8 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route exact path="/signup" element={<LoginSignup />} />
         <Route path="/addpost" element={<AddPost />} />
-        <Route path="/home" element={<Dashboard/>}/>
-        <Route path="/search" element={<SearchPage/>}/>
+        <Route path="/home" element={<Dashboard pageTitle="Dashboard"/>}/>
+        <Route path="/search" element={<SearchPage pageTitle="Search"/>}/>
         <Route path="/saved" element={<SavedPage/>}/>
       </Routes>
     </div>

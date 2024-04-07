@@ -7,7 +7,7 @@ import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2"
 import {Link} from "react-router-dom";
 import axios from 'axios';
 
-const SearchPage = () => {
+const SearchPage = ({ pageTitle }) => {
 
   const [descriptions, setDescriptions] = useState([]);
   const [captions, setCaptions] = useState([]);
@@ -50,7 +50,7 @@ const SearchPage = () => {
   return (
 
     <>
-      <NavBar />
+      <NavBar pageTitle="Search" />
       <div className="search-box">
         <IoSearchOutline size={23} style={{ color: 'rgba(0,0,0,0.5)' }} />
         <input type="text" className="search-input" placeholder="Search.."/>

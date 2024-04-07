@@ -3,12 +3,19 @@ a {
 }
 
 .sidebar {
-    height: 80px;
+    height: 70px;
 
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
+    background-color: #284A8E;
 
+}
+.sidebar h1
+{
+    text-align: center;
+    color:white;
+    padding:15px;
 }
 
 .menu-bars {
@@ -48,7 +55,7 @@ a {
     text-decoration: none;
     color: white;
     font-size: 18px;
-    width: 95%;
+    width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -57,8 +64,8 @@ a {
 }
 
 .nav-text a:hover {
-    background-color: white;
-    color:black;
+    background-color: #6CA0DC;
+    
 }
 
 .nav-menu-items {
@@ -88,11 +95,7 @@ span {
     background-color: blue;
     
 }
-h1 {
-    color: #165a72;
-    margin: 50px auto;
-    font-size: 40px;
-}
+
 .menu1 {
     margin:20px 0 40px 5px;
 }

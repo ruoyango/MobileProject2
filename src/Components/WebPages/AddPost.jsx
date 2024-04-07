@@ -8,6 +8,8 @@ import './AddPost.css'
 // import savelogo from '../Assets/savelogo.png'
 // import uploadlogo from '../Assets/uploadlogo.png'
 import axios from 'axios';
+import NavBar from '../NavBar.jsx';
+
 import { useNavigate } from "react-router-dom";
 //import ReactS3 from 'react-s3'
 // import { Amplify } from 'aws-amplify'
@@ -22,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 // }
 // const client = new S3Client(config);
 
-const AddPost = () => {
+const AddPost = ({ pageTitle }) => {
 
     let navigate = useNavigate();
 
@@ -163,6 +165,8 @@ const AddPost = () => {
     };
 
     return (
+        <>
+        <NavBar pageTitle="Create"/>
         <div className='container'>
             {/* <div className="header">
                 <img src={logo} className="profile-photo" alt="profile" />
@@ -263,6 +267,7 @@ const AddPost = () => {
                 </div>
             </form>
         </div>
+        </>
     )
 }
 

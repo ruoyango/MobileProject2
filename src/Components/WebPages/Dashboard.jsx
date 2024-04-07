@@ -7,7 +7,7 @@ import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2"
 import {Link} from "react-router-dom";
 import axios from 'axios';
 
-const Dashboard = () => {
+const Dashboard = ({pageTitle}) => {
 
     const [descriptions, setDescriptions] = useState([]);
     const [captions, setCaptions] = useState([]);
@@ -53,7 +53,7 @@ const Dashboard = () => {
     return (
         <>
 
-            <NavBar />
+            <NavBar pageTitle="Dashboard" />
             <div className='dashboard'>
 
                 {captions?.map((caption, index) => (
