@@ -14,7 +14,7 @@
     border: 1px solid black;
     height: 265px;
     width: 30%;
-    margin: 100px auto;
+    margin: 50px auto;
     border-radius: 40px;
     box-shadow: 2px 10px 5px 0px rgba(0, 0, 0, 0.52);
     -webkit-box-shadow: 2px 10px 5px 0px rgba(0, 0, 0, 0.52);
@@ -81,7 +81,7 @@
     border-radius: 28px;
     background-color: #f6f6f6;
     transition: background 0.25s;
-    margin:auto;
+    margin:20px auto;
 }
 .search-box:focus-within
 {

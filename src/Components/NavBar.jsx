@@ -6,18 +6,28 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { NavBarData } from './NavBarData';
 import { IconContext } from 'react-icons';
-function NavBar() {
+function NavBar( { pageTitle }) {
     const [sidebar, setSidebar] =useState(false);
     const showSidebar =()=> setSidebar(!sidebar);
+     // Array of pages
+     const pages = [
+        { name: 'Dashboard', path: '/home' },
+        { name: 'Search', path: '/search' },
+        { name: 'Create', path: '/addpost' },
+        { name: 'Save', path: '/saved' },
+        
+        // Add more pages as needed
+    ];
     return (
     
         
         <>
-        <IconContext.Provider value={{color: 'black', size:'40px'}}>
+        <IconContext.Provider value={{color: 'white', size:'40px'}}>
             <div className="sidebar">
                 <Link to="#" className='menu-bars'>
                    <FaIcons.FaBars onClick={showSidebar}/>
                 </Link>
+                <h1>{pageTitle}</h1>
             </div>
             <nav className={sidebar ? 'nav-menu active': 'nav-menu'}>
                 <ul className='nav-menu-items' onClick={showSidebar}>

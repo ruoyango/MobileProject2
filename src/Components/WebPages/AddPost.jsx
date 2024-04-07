@@ -9,6 +9,7 @@ import searchlogo from '../Assets/searchlogo.png'
 import savelogo from '../Assets/savelogo.png'
 import uploadlogo from '../Assets/uploadlogo.png'
 import axios from 'axios';
+import NavBar from '../NavBar.jsx';
 
 //import ReactS3 from 'react-s3'
 // import { Amplify } from 'aws-amplify'
@@ -23,7 +24,7 @@ let totalImages = 0;
 // }
 // const client = new S3Client(config);
 
-const AddPost = () => {
+const AddPost = ({ pageTitle }) => {
 
     // useEffect(() => {
     //     Amplify.configure({
@@ -159,8 +160,11 @@ const AddPost = () => {
     };
 
     return (
-        <div className='container'>
-            <div className="header">
+        <>
+        
+        <NavBar pageTitle="Create"/>
+        <div className='post-container'>
+            {/* <div className="header">
                 <img src={logo} className="profile-photo" alt="profile" />
                 <img src={home} className="home" alt="home" />
                 <img src={searchlogo} className="home" alt="search" />
@@ -169,7 +173,7 @@ const AddPost = () => {
                 <img src={logoutlogo} className="openModalBtn"
                     onClick={() => { setModalOpen(true); }} alt="logout" />
                 {modalOpen && <Modal setOpenModal={setModalOpen} />}
-            </div>
+            </div> */}
 
             <form method="post" action="http://54.198.89.107:3001">
                 <div className="card">
@@ -252,6 +256,7 @@ const AddPost = () => {
                 </div>
             </form>
         </div>
+        </>
     )
 }
 

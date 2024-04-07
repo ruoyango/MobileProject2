@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import "./style.css"
 import NavBar from "../NavBar"
 // import Sidebar from"../NavBar2"
@@ -7,12 +7,12 @@ import * as CiIcons from 'react-icons/ci'
 import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2"
 import {Link} from "react-router-dom";
 
-const Dashboard = () => {
-
+const Dashboard = ({ pageTitle }) => {
+ 
     return (
         <>
 
-            <NavBar />
+            <NavBar pageTitle="Dashboard"  />
             <div className='post'>
 
                 <h3>@Account name</h3>

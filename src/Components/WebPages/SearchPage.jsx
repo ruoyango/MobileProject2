@@ -7,12 +7,12 @@ import { HiOutlineChatBubbleOvalLeft } from "react-icons/hi2"
 // import { Link } from "react-router-dom";
 import test from '../Assets/7ad47d8666404417a572428d9ce78a82.png'
 
-const SearchPage = () => {
+const SearchPage = ({ pageTitle }) => {
 
   return (
 
     <>
-      <NavBar />
+      <NavBar pageTitle="Search" />
       <div className="search-box">
         <IoSearchOutline size={23} style={{ color: 'rgba(0,0,0,0.5)' }} />
         <input type="text" className="search-input" placeholder="Search.." />
