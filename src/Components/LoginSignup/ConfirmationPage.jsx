@@ -1,5 +1,5 @@
 /*
-Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Authors: Elton Teo
 Date: 1 April 2024
 Summary: ConfirmationPage.jsx handles the user confirmation process after signing up, 
 allowing users to enter a verification code and confirm their account.

@@ -1,5 +1,5 @@
 /*
-Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Authors: Lim Hui Ching, Elton Teo, Nicole Wong
 Date: 1 April 2024
 Summary: Login.jsx Handles user login functionality, including input validation, 
 authentication, and navigation to other pages. It manages state variables 

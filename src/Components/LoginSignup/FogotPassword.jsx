@@ -1,5 +1,5 @@
 /*
-Authors: Lim Hui Ching, Elton Teo, Go Ruo Yan, Nicole Wong
+Authors: Elton Teo
 Date: 1 April 2024
 Summary: FogotPassword.jsx provides a way for users to reset their 
 password by sending a verification code to their email.
