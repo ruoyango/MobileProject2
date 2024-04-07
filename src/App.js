@@ -1,12 +1,10 @@
 import React from 'react'
 import './App.css';
-import Signup from './Components/LoginSignup/Signup';
 import Login from './Components/LoginSignup/Login'
 import Dashboard from './Components/WebPages/Dashboard'
 import SavedPage from './Components/WebPages/SavedPage'
 import SearchPage from './Components/WebPages/SearchPage'
-import {Route, BrowserRouter, Routes} from 'react-router-dom'
-import NavBar from "./Components/NavBar"
+import {Route, Routes} from 'react-router-dom'
 import LoginSignup from './Components/LoginSignup/LoginSignup';
 
 

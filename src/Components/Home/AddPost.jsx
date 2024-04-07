@@ -14,13 +14,13 @@ import uploadlogo from '../Assets/uploadlogo.png'
 //import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 let totalImages = 0;
-const config = {
-    bucketName: 'mobile-project-2-data',
-    region: 'us-east-1',
-    accessKeyId: 'c2bb855def4dd0771a63f4004e0ef40675eaf5c1314e178b818d09a1883ab314',
-    secretAccessKey: 'c2bb855def4dd0771a63f4004e0ef40675eaf5c1314e178b818d09a1883ab314',
-}
-const client = new S3Client(config);
+// const config = {
+//     bucketName: 'mobile-project-2-data',
+//     region: 'us-east-1',
+//     accessKeyId: 'c2bb855def4dd0771a63f4004e0ef40675eaf5c1314e178b818d09a1883ab314',
+//     secretAccessKey: 'c2bb855def4dd0771a63f4004e0ef40675eaf5c1314e178b818d09a1883ab314',
+// }
+// const client = new S3Client(config);
 
 const AddPost = () => {
 
@@ -120,18 +120,18 @@ const AddPost = () => {
 
     
     const uploadFile = async () => {
-        const command = new PutObjectCommand({
-          Bucket: "mobile-project-2-data",
-          Region: "us-east-1",
-          Key: images[0].name,
-          Body: "Hello S3!",
-        });
-        try {
-          const response = await client.send(command);
-          console.log(response);
-        } catch (err) {
-          console.error(err);
-        }
+        // const command = new PutObjectCommand({
+        //   Bucket: "mobile-project-2-data",
+        //   Region: "us-east-1",
+        //   Key: images[0].name,
+        //   Body: "Hello S3!",
+        // });
+        // try {
+        //   const response = await client.send(command);
+        //   console.log(response);
+        // } catch (err) {
+        //   console.error(err);
+        // }
     };
 
     return (
