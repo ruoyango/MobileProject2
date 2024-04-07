@@ -11,9 +11,16 @@ const SearchPage = () => {
 
   const [descriptions, setDescriptions] = useState([]);
   const [captions, setCaptions] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    axios.get('http://54.198.89.107:3001/')
+    setCaptions([]);
+    setDescriptions([]);
+    let searching = searchText === "" ? "*" : searchText;
+ 
+    axios.post('http://54.198.89.107:3001/query/posts/userID/', {
+      search: searching
+    })
     .then((result) => {
         console.log(result);
         console.log(result.data[0].caption);
@@ -34,13 +41,11 @@ const SearchPage = () => {
             ])
 
         }
-        // setCaptions(result.data[0].caption);
-        // setDescriptions(result.data[0].description);
     })
     .catch((e) => {
         console.log(e);
     })
-  }, [])
+  }, [searchText])
 
   return (
 
@@ -48,7 +53,7 @@ const SearchPage = () => {
       <NavBar />
       <div className="search-box">
         <IoSearchOutline size={23} style={{ color: 'rgba(0,0,0,0.5)' }} />
-        <input type="text" className="search-input" placeholder="Search.." />
+        <input type="text" className="search-input" placeholder="Search.."/>
 
       </div>
       
