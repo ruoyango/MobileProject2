@@ -84,7 +84,9 @@ app.post('/insert/bookmark/add/',(req,res)=>{
 	con.query(query, function (err, results) {
 		if (err) throw err;
 		console.log(results);
-		currentBookmarkNo = results.data[0].bookmarkID + 1;
+		if (results.data.length > 0) {
+			currentBookmarkNo = results.data[0].bookmarkID + 1;
+		}
 		
 		// inserting the value
 		var records = [[currentBookmarkNo, req.body.userID, req.body.postID]];
